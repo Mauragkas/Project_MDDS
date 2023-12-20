@@ -46,6 +46,7 @@ impl IntervalTree {
         }
     }
 
+    #[allow(dead_code)]
     fn overlap_search(&self, start: i32, end: i32) -> Option<(i32, i32)> {
         Self::_overlap_search(&self.root, start, end)
     }
@@ -66,16 +67,61 @@ impl IntervalTree {
             None => None,
         }
     }
+
+    fn overlap_search_all(&self, start: i32, end: i32) -> Vec<(i32, i32)> {
+        let mut results = Vec::new();
+        Self::_overlap_search_all(&self.root, start, end, &mut results);
+        results
+    }
+
+    fn _overlap_search_all(
+        node: &Option<Box<Node>>,
+        start: i32,
+        end: i32,
+        results: &mut Vec<(i32, i32)>
+    ) {
+        if let Some(n) = node {
+            if start <= n.end && end >= n.start {
+                results.push((n.start, n.end));
+            }
+            if n.left.is_some() && n.left.as_ref().unwrap().max_end >= start {
+                Self::_overlap_search_all(&n.left, start, end, results);
+            }
+            if n.right.is_some() && (n.right.as_ref().unwrap().start <= end) {
+                Self::_overlap_search_all(&n.right, start, end, results);
+            }
+        }
+    }
 }
 
 fn main() {
     let mut interval_tree = IntervalTree::new();
-    let intervals = vec![(1996, 1998), (2000, 2000), (2003, 2005), (2008, 2010), (2022, 2022)];
+    let intervals = vec![
+        (1996, 1998), (1997, 1999), // Overlapping
+        (2000, 2000), 
+        (2003, 2005), (2004, 2006), // Overlapping
+        (2008, 2010), (2009, 2011), // Overlapping
+        (2015, 2017), (2016, 2018), // Overlapping
+        (2022, 2022),
+    ];
 
     for interval in intervals {
         interval_tree.insert(interval.0, interval.1);
     }
 
-    let query_result = interval_tree.overlap_search(2008, 2012);
-    println!("Query result: {:?}", query_result);
+    let queries = [
+        (1995, 1997),
+        (1998, 2000),
+        (2004, 2005),
+        (2009, 2012),
+        // (2007, 2012),
+        (2016, 2017),
+        (2021, 2023),
+    ];
+
+    for query in queries {
+        // let result = interval_tree.overlap_search(query.0, query.1);
+        let result = interval_tree.overlap_search_all(query.0, query.1);
+        println!("Query {:?} result: {:?}", query, result);
+    }
 }
