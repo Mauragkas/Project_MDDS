@@ -9,7 +9,7 @@ class SegmentTreeNode:
 
 class SegmentTree:
     def __init__(self, intervals):
-        def createTree(start, end):
+        def create_tree(start, end):
             if start > end:
                 return None
             node = SegmentTreeNode(start, end)
@@ -17,12 +17,15 @@ class SegmentTree:
                 node.intervals = [i for i in intervals if i[0] <= start <= i[1]]
             else:
                 mid = (start + end) // 2
-                node.left = createTree(start, mid)
-                node.right = createTree(mid + 1, end)
-                node.intervals = sorted(node.left.intervals + node.right.intervals, key=lambda x: x[0])
+                node.left = create_tree(start, mid)
+                node.right = create_tree(mid + 1, end)
+                node.intervals = sorted(
+                    node.left.intervals + node.right.intervals,
+                    key=lambda x: x[0]
+                )
             return node
 
-        self.root = createTree(min(i[0] for i in intervals), max(i[1] for i in intervals))
+        self.root = create_tree(min(i[0] for i in intervals), max(i[1] for i in intervals))
 
     def query(self, node, point):
         if not node or point < node.start or point > node.end:
@@ -45,7 +48,6 @@ class SegmentTree:
         return list(set(intervals))
 
 # Example usage
-# intervals = [(1, 3), (2, 5), (4, 8), (10, 15), (7, 12), (0, 0), (13, 13), (3, 6), (9, 11)]
 intervals = [
     (1996, 1998), (1997, 1999), # Overlapping
     (2000, 2000), 
@@ -67,10 +69,10 @@ queries = [
 
 st = SegmentTree(intervals)
 
-# for query in queries:
-#     print('Query:', query, end=' ' )
-#     print('Result:', st.interval_query(st.root, query[0], query[1]))
+for query in queries:
+    print('Query:', query, end=' ')
+    print('Result:', st.interval_query(st.root, query[0], query[1]))
 
-# for query in queries:
-#     print('Query:', query[0])
-#     print('Result:', st.query(st.root, query[0]))
+for query in queries:
+    print('Query:', query[0], end=' ')
+    print('Result:', st.query(st.root, query[0]))
