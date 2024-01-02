@@ -36,15 +36,26 @@ def convex_hull(points):
 
     return np.array(hull)
 
+# def is_dominated(point, others):
+#     """Check if the point is dominated by any in the others array."""
+#     for other in others:
+#         if (other[0] >= point[0] and other[1] > point[1]) or (other[0] > point[0] and other[1] >= point[1]):
+#             return True
+#     return False
+
 def is_dominated(point, others, dominance_case):
     for other in others:
         if not (point[0] == other[0] and point[1] == other[1]):  # Compare elements individually
+            # Case 1: MIN d1, MIN d2 (lower-left dominance)
             if dominance_case == 1 and other[0] <= point[0] and other[1] <= point[1]:
                 return True
+            # Case 2: MIN d1, MAX d2 (upper-left dominance)
             elif dominance_case == 2 and other[0] <= point[0] and other[1] >= point[1]:
                 return True
+            # Case 3: MAX d1, MIN d2 (lower-right dominance)
             elif dominance_case == 3 and other[0] >= point[0] and other[1] <= point[1]:
                 return True
+            # Case 4: MAX d1, MAX d2 (upper-right dominance)
             elif dominance_case == 4 and other[0] >= point[0] and other[1] >= point[1]:
                 return True
     return False
@@ -59,7 +70,7 @@ def skyline(points, dominance_case=1):
     return np.array(skyline_points)
 
 # Example usage
-points = np.random.rand(100, 2)  # Generate random points
+points = np.random.rand(30, 2)  # Generate random points
 hull_points = convex_hull(points)
 skyline_points = skyline(points, dominance_case=1)
 sorted_skyline_points = skyline_points[np.argsort(skyline_points[:, 0])]
