@@ -83,10 +83,10 @@ interval_tree = IntervalTree(intervals)
 
 # Overlap search
 for query in queries:
-    print("Query: ", query, end=" ")
-    print("Results: ", interval_tree.interval_query(*query))
+    print("Query:", query, end=" ")
+    print("Result:", interval_tree.interval_query(*query))
 
 # Stabbing query
 for query in queries:
-    print("Query: ", query[0], end=" ")
-    print("Results: ", interval_tree.query(query[0]))
+    print("Query:", query[0], end=" ")
+    print("Result:", interval_tree.query(query[0]))

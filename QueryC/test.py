@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -35,13 +36,48 @@ def convex_hull(points):
 
     return np.array(hull)
 
+def is_dominated(point, others, dominance_case):
+    for other in others:
+        if not (point[0] == other[0] and point[1] == other[1]):  # Compare elements individually
+            if dominance_case == 1 and other[0] <= point[0] and other[1] <= point[1]:
+                return True
+            elif dominance_case == 2 and other[0] <= point[0] and other[1] >= point[1]:
+                return True
+            elif dominance_case == 3 and other[0] >= point[0] and other[1] <= point[1]:
+                return True
+            elif dominance_case == 4 and other[0] >= point[0] and other[1] >= point[1]:
+                return True
+    return False
+
+def skyline(points, dominance_case=1):
+    """Find all points in the skyline."""
+    skyline_points = []
+    for point in points:
+        # if not is_dominated(point, points):
+        if not is_dominated(point, points, dominance_case):
+            skyline_points.append(point)
+    return np.array(skyline_points)
+
 # Example usage
 points = np.random.rand(100, 2)  # Generate random points
 hull_points = convex_hull(points)
+skyline_points = skyline(points, dominance_case=1)
+sorted_skyline_points = skyline_points[np.argsort(skyline_points[:, 0])]
 
-# Plotting
-plt.scatter(points[:,0], points[:,1])
+# First Plot - Points and Convex Hull
+plt.figure()
+plt.scatter(points[:,0], points[:,1], label='Points')
 for i in range(len(hull_points)):
     plt.plot([hull_points[i][0], hull_points[(i+1) % len(hull_points)][0]], 
              [hull_points[i][1], hull_points[(i+1) % len(hull_points)][1]], 'r')
+plt.legend()
+
+# Second Plot - All Points with Skyline Highlighted
+plt.figure()
+plt.scatter(points[:,0], points[:,1], label='Points')
+plt.scatter(skyline_points[:,0], skyline_points[:,1], color='green', label='Skyline Points')
+for i in range(len(sorted_skyline_points) - 1):
+    plt.plot([sorted_skyline_points[i][0], sorted_skyline_points[i+1][0]], 
+             [sorted_skyline_points[i][1], sorted_skyline_points[i+1][1]], 'g--')
+plt.legend()
 plt.show()

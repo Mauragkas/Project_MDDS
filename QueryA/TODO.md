@@ -11,24 +11,24 @@ Implementing Interval and Segment Trees to manage and query time intervals of sc
 - [ ] Format data into time intervals (e.g., [1996, 1998], [2000, 2000]).
 
 ### 2. Implement Interval Tree
-- [ ] Design an Interval Tree structure.
-- [ ] Implement insertion of intervals.
-- [ ] Implement searching for overlapping intervals.
+- [x] Design an Interval Tree structure.
+- [x] Implement insertion of intervals.
+- [x] Implement searching for overlapping intervals.
 
 ### 3. Implement Segment Tree
-- [ ] Design a Segment Tree structure.
-- [ ] Implement insertion of segments.
-- [ ] Implement point queries (e.g., find scientists active in 2010).
-- [ ] Implement interval queries (e.g., find scientists active between 2008 and 2012).
+- [x] Design a Segment Tree structure.
+- [x] Implement insertion of segments.
+- [x] Implement point queries (e.g., find scientists active in 2010).
+- [x] Implement interval queries (e.g., find scientists active between 2008 and 2012).
 
 ### 4. Query Implementation
-- [ ] Create functions for interval queries (e.g., range overlaps).
-- [ ] Create functions for stabbing queries (e.g., specific years).
+- [x] Create functions for interval queries (e.g., range overlaps).
+- [x] Create functions for stabbing queries (e.g., specific years).
 
 ### 5. Testing
-- [ ] Test Interval Tree with various intervals.
-- [ ] Test Segment Tree with point and interval queries.
-- [ ] Validate results against expected outcomes.
+- [x] Test Interval Tree with various intervals.
+- [x] Test Segment Tree with point and interval queries.
+- [x] Validate results against expected outcomes.
 
 ### 6. Documentation
 - [ ] Document the code.
