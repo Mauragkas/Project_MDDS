@@ -1,0 +1,314 @@
+[
+    {
+        "author's name": "David J. Brown",
+        "title": "ADONIS - The Strategic Needs of Publishers. ",
+        "gap of years": [
+            1980,
+            1989
+        ],
+        "year of release": 1988,
+        "DBLP_Record": "conf/essen/Brown88",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "none"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "Electronic publishing and libraries - planning for the impact and growth to 2003",
+        "gap of years": [
+            1990,
+            1999
+        ],
+        "year of release": 1996,
+        "DBLP_Record": "books/daglib/0081104",
+        "Awards": "none",
+        "kind": "books and theses",
+        "co-author": "none"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "Exorcising the spectre of interlibrary loans",
+        "gap of years": [
+            1990,
+            1999
+        ],
+        "year of release": 1997,
+        "DBLP_Record": "journals/lp/Brown97",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "Library Interface Versioning in Solaris and Linux",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2000,
+        "DBLP_Record": "conf/alsc/BrownR00",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Karl Runge"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "From the Editors: The Developer's Art Today: Aikido or Sumo?",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": "2003",
+        "DBLP_Record": "journals/queue/Brown03",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "Curmudgeon: Search Hurts",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": "2004",
+        "DBLP_Record": "journals/queue/Brown04",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "New Frontiers for Scientific and Technical InformationCODEX International Hotel, Samsung-dong, Seoul, Korea June 11-12, 2008",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2008,
+        "DBLP_Record": "journals/isu/Brown08",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "International Council for Scientific and Technical Information (ICSTI) Annual Conference - Managing Data for Science.",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2009,
+        "DBLP_Record": "journals/isu/Brown09",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "Toward Energy-Efficient Computing.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2010,
+        "DBLP_Record": "journals/queue/BrownR10",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Charles Reams"
+    },
+    {
+        "author's name": "David J. Brown",
+        "title": "Repositories and journals: are they in conflict?: A literature review of relevant literature.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2010,
+        "DBLP_Record": "journals/aslib/Brown10",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none"
+    },
+    {
+        "author's name": "Charles Reams",
+        "title": "Playing Perfect Hangman",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2009,
+        "DBLP_Record": "journals/icga/Reams09",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none"
+    },
+    {
+        "author's name": "Charles Reams",
+        "title": "Toward Energy-Efficient Computing.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2010,
+        "DBLP_Record": "journals/queue/BrownR10",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "David J. Brown"
+    },
+    {
+        "author's name": "Charles Reams",
+        "title": "Anatree: A Fast Data Structure for Anagrams",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2012,
+        "DBLP_Record": "journals/jea/Reams12",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none"
+    },
+    {
+        "author's name": "Sumithra Devi Kengeri Anjanappa ",
+        "title": "Certificateless Digital Signature Technology for e-Governance Solutions.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2019,
+        "DBLP_Record": "journals/aghcs/DhirA19",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Shuchi Dhir"
+    },
+    {
+        "author's name": "Sumithra Devi Kengeri Anjanappa ",
+        "title": "Cross Layer QoS Guaranteed Fault Tolerance for Data Transmission in Mobile Wireless Sensor Networks.",
+        "gap of years": [
+            2020,
+            2029
+        ],
+        "year of release": 2020,
+        "DBLP_Record": "journals/wpc/ShyamalaPD20",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "C. Shyamala, M. Geetha Priya"
+    },
+    {
+        "author's name": "Sumithra Devi Kengeri Anjanappa ",
+        "title": "The Use of Biometric Fingerprints for On-the-Fly Digital Signing of Documents.",
+        "gap of years": [
+            2020,
+            2029
+        ],
+        "year of release": 2020,
+        "DBLP_Record": "journals/computer/DhirA20",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Shuchi Dhir"
+    },
+    {
+        "author's name": "Sumithra Devi Kengeri Anjanappa ",
+        "title": "ROS-Enabled Collaborative Navigation and Manipulation with Heterogeneous Robots. ",
+        "gap of years": [
+            2020,
+            2029
+        ],
+        "year of release": 2023,
+        "DBLP_Record": "journals/sncs/ThilagavathyS23",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "R. Thilagavathy"
+    },
+    {
+        "author's name": "Charles Reams",
+        "title": "Fault Tolerance and Energy Efficient Multi-Hop Clustering with Dual Base Stations in Large Scale Wireless Sensor Network",
+        "gap of years": [
+            2020,
+            2023
+        ],
+        "year of release": 2023,
+        "DBLP_Record": "journals/sncs/RajeshwariD23",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "K. S. Rajeshwari"
+    },
+    {
+        "author's name": "Binu M ",
+        "title": "Fuzzy Indices with Applications to Human Trafficking.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2019,
+        "DBLP_Record": "journals/nmnc/MordesonSMM19",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "John N. Mordeson, Aimee Schwab-McCoy, Sunil Mathew"
+    },
+    {
+        "author's name": "Binu M ",
+        "title": "Dialectic Synthesis: Application to Human Trafficking. ",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2019,
+        "DBLP_Record": "journals/nmnc/MordesonMM19",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "John N. Mordeson, Sunil Mathew"
+    },
+    {
+        "author's name": "Binu M ",
+        "title": "Connectivity index of a fuzzy graph and its application to human trafficking",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2019,
+        "DBLP_Record": "journals/fss/MMM19",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Sunil Mathew, John N. Mordeson"
+    },
+    {
+        "author's name": "Binu M ",
+        "title": "Wiener index of a fuzzy graph and application to illegal immigration networks.",
+        "gap of years": [
+            2020,
+            2029
+        ],
+        "year of release": 2020,
+        "DBLP_Record": "journals/fss/MMM20",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Sunil Mathew, John N. Mordeson"
+    },
+    {
+        "author's name": "Binu M ",
+        "title": "Cyclic Connectivity Index of Fuzzy Graphs.",
+        "gap of years": [
+            2020,
+            2029
+        ],
+        "year of release": 2021,
+        "DBLP_Record": "journals/tfs/MMM21",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Sunil Mathew, John N. Mordeson"
+    },
+    {
+        "author's name": "Binu M ",
+        "title": "Connectivity status of fuzzy graphs.",
+        "gap of years": [
+            2020,
+            2029
+        ],
+        "year of release": 2021,
+        "DBLP_Record": "journals/isci/MMM21",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Sunil Mathew, John N. Mordeson"
+    }
+]

@@ -36,13 +36,6 @@ def convex_hull(points):
 
     return np.array(hull)
 
-# def is_dominated(point, others):
-#     """Check if the point is dominated by any in the others array."""
-#     for other in others:
-#         if (other[0] >= point[0] and other[1] > point[1]) or (other[0] > point[0] and other[1] >= point[1]):
-#             return True
-#     return False
-
 def is_dominated(point, others, dominance_case):
     for other in others:
         if not (point[0] == other[0] and point[1] == other[1]):  # Compare elements individually

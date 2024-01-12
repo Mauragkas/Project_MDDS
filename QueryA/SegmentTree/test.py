@@ -1,61 +1,91 @@
 #!/usr/bin/env python
+import json
 
 class SegmentTreeNode:
     def __init__(self, start, end):
         self.start = start
         self.end = end
         self.intervals = []
-        self.left = self.right = None
+        self.left = None
+        self.right = None
 
 class SegmentTree:
     def __init__(self, intervals):
-        def create_tree(start, end):
-            if start > end:
-                return None
-            node = SegmentTreeNode(start, end)
-            if start == end:
-                node.intervals = [i for i in intervals if i[0] <= start <= i[1]]
-            else:
-                mid = (start + end) // 2
-                node.left = create_tree(start, mid)
-                node.right = create_tree(mid + 1, end)
-                node.intervals = sorted(
-                    node.left.intervals + node.right.intervals,
-                    key=lambda x: x[0]
-                )
-            return node
+        # Determine the bounds of the tree
+        all_points = [interval['gap of years'][0] for interval in intervals] + \
+                     [interval['gap of years'][1] for interval in intervals]
+        self.root = self.build_tree(min(all_points), max(all_points))
+        for interval in intervals:
+            self.insert(interval)
 
-        self.root = create_tree(min(i[0] for i in intervals), max(i[1] for i in intervals))
+    def build_tree(self, start, end):
+        if start > end:
+            return None
+        node = SegmentTreeNode(start, end)
+        if start != end:
+            mid = (start + end) // 2
+            node.left = self.build_tree(start, mid)
+            node.right = self.build_tree(mid + 1, end)
+        return node
 
-    def query(self, node, point):
-        if not node or point < node.start or point > node.end:
-            return []
-        if node.start == node.end:
-            return node.intervals
-        return self.unique_intervals(
-            self.query(node.left, point) + self.query(node.right, point))
+    def insert(self, interval):
+        self._insert_node(self.root, interval)
 
-    def interval_query(self, node, start, end):
-        if not node or start > node.end or end < node.start:
-            return []
+    def _insert_node(self, node, interval):
+        if not node:
+            return
+        start, end = interval['gap of years']
+        if end < node.start or start > node.end:
+            return
         if start <= node.start and end >= node.end:
-            return node.intervals
-        return self.unique_intervals(
-            self.interval_query(node.left, start, end) + self.interval_query(node.right, start, end))
+            node.intervals.append(interval)
+            return
+        self._insert_node(node.left, interval)
+        self._insert_node(node.right, interval)
 
-    @staticmethod
-    def unique_intervals(intervals):
-        return list(set(intervals))
+    def query(self, point):
+        return self._query_node(self.root, point, True)
 
-# Example usage
-intervals = [
-    (1996, 1998), (1997, 1999), # Overlapping
-    (2000, 2000), 
-    (2003, 2005), (2004, 2006), # Overlapping
-    (2008, 2010), (2009, 2011), # Overlapping
-    (2015, 2017), (2016, 2018), # Overlapping
-    (2022, 2022),
-]
+    def interval_query(self, query_start, query_end):
+        return self._query_node(self.root, query_start, False, query_end)
+
+    def _query_node(self, node, point, is_query, end=None):
+        if not node:
+            return []
+        if is_query:
+            if point < node.start or point > node.end:
+                return []
+        else:
+            if end < node.start or point > node.end:
+                return []
+
+        results = []
+        added_intervals = set()  # Track unique intervals by their JSON representation
+
+        def add_interval(interval):
+            interval_json = json.dumps(interval, sort_keys=True)  # Convert interval to JSON string for uniqueness
+            if interval_json not in added_intervals:
+                results.append(interval)
+                added_intervals.add(interval_json)
+
+        for interval in node.intervals:
+            if (is_query and interval['gap of years'][0] <= point <= interval['gap of years'][1]) or \
+               (not is_query and interval['gap of years'][0] <= end and interval['gap of years'][1] >= point):
+                add_interval(interval)
+
+        for child_node in [node.left, node.right]:
+            child_results = self._query_node(child_node, point, is_query, end)
+            for interval in child_results:
+                add_interval(interval)
+
+        return results
+    
+# Read data from JSON file
+filename = '../../pol.json'
+data = json.load(open(filename, 'r'))
+
+# Create Segment Tree
+st = SegmentTree(data)
 
 queries = [
     (1995, 1997),
@@ -66,13 +96,22 @@ queries = [
     (2021, 2023),
 ]
 
-
-st = SegmentTree(intervals)
-
-for query in queries:
-    print('Query:', query, end=' ')
-    print('Result:', st.interval_query(st.root, query[0], query[1]))
-
+# Stabbing querying
+print('Stabbing querying:')
 for query in queries:
     print('Query:', query[0], end=' ')
-    print('Result:', st.query(st.root, query[0]))
+    print('Result:', end=' ')
+    for i in st.query(query[0]):
+        print(i['gap of years'], end=' ')
+    print()
+
+print()
+
+# Interval querying
+print('Interval querying:')
+for query in queries:
+    print('Query:', query, end=' ')
+    print('Result:', end=' ')
+    for i in st.interval_query(*query):
+        print(i['gap of years'], end=' ')
+    print()
