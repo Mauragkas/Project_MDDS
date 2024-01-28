@@ -23,6 +23,121 @@ impl ConvexHull {
         self.points.iter()
     }
 
+    fn gift_wrapping_init(&mut self) {
+        let mut points: Vec<Point> = Vec::new();
+        let mut min_z = self.points[0].z;
+        // fint the minimum z value
+        for point in self.points.iter() {
+            if point.z < min_z {
+                min_z = point.z;
+            }
+        }
+
+        // find the points with the minimum z value
+        for point in self.points.iter() {
+            if point.z == min_z && !points.contains(point) {
+                points.push(point.clone());
+            }
+            if points.len() == 3 {
+                break;
+            }
+        }
+
+        // create the first edges
+        let edge1 = Edge {
+            point1: points[0].clone(),
+            point2: points[1].clone(),
+        };
+
+        let edge2 = Edge {
+            point1: points[1].clone(),
+            point2: points[2].clone(),
+        };
+
+        let edge3 = Edge {
+            point1: points[2].clone(),
+            point2: points[0].clone(),
+        };
+
+        // add the edges to the edges vector
+        self.edges.push(edge1.clone());
+        self.edges.push(edge2.clone());
+        self.edges.push(edge3.clone());
+
+        // create the first plane
+        let plane = Plane {
+            point_a: points[0].clone(),
+            point_b: points[1].clone(),
+            point_c: points[2].clone(),
+            normal: Point { x: 0, y: 0, z: 0 },
+            edge_a: edge1.clone(),
+            edge_b: edge2.clone(),
+            edge_c: edge3.clone(),
+        };
+
+        // add the plane to the planes vector
+        self.add_plane(plane);
+
+    }
+
+    pub fn gift_wrapping(&mut self) {
+        self.gift_wrapping_init();
+
+        loop {
+            //  find an edge that appears only once in the edges vector
+            let mut edges_that_appear_once: Vec<Edge> = Vec::new();
+            for edge in self.edges.iter() {
+                let mut count = 0;
+                for edge2 in self.edges.iter() {
+                    if edge == edge2 {
+                        count += 1;
+                    }
+                }
+                if count == 1 {
+                    edges_that_appear_once.push(edge.clone());
+                }
+            }
+
+            if edges_that_appear_once.len() == 0 {
+                break;
+            }
+
+            for edge in edges_that_appear_once.iter() {
+                // find the plane that contains the edge from the planes vector
+                let plane = self.planes.iter().find(|p| p.edge_a == *edge || p.edge_b == *edge || p.edge_c == *edge).unwrap();
+                // println!("Normal: {:?}", plane.normal);
+                let mut possible_planes: Vec<Plane> = Vec::new();
+                for point in self.points.iter() {
+                    // create a plane from the edge and the point
+                    let mut plane = Plane::new(edge.point1.clone(), edge.point2.clone(), point.clone());
+
+                    // push the plane to the possible planes vector
+                    possible_planes.push(plane);
+                }
+
+                // find the possible plane that has the minimum angle between its normal and the normal of the plane that contains the edge
+                let mut min_angle = 360.0;
+                let mut min_angle_plane = Plane::new(Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 });
+                for plane in possible_planes.iter() {
+                    let angle = angle_between_vectors(plane.normal.clone(), plane.normal.clone());
+                    if angle < min_angle {
+                        min_angle = angle;
+                        min_angle_plane = plane.clone();
+                    }
+                }
+
+                // now add the plane abd the edges to the convex hull
+                self.add_plane(min_angle_plane.clone());
+                let edges = min_angle_plane.get_edges();
+                for edge in edges.iter() {
+                    self.edges.push(edge.clone());
+                }
+                
+            }
+        }
+        
+    }
+    
     // a function to initialize the convex hull with the first four points
     pub fn initialize(&mut self) {
         // create the first edges

@@ -45,3 +45,12 @@ pub fn point_above_plane(plane: Plane, point: Point) -> bool {
     dot_product(normal, point_vector) > 0
     // dot_product(normal, point_vector) < 0
 }
+
+pub fn angle_between_vectors(a: Point, b: Point) -> f64 {
+    let dot = dot_product(a.clone(), b.clone());
+    let a_magnitude = (a.x.pow(2) + a.y.pow(2) + a.z.pow(2)) as f64;
+    let b_magnitude = (b.x.pow(2) + b.y.pow(2) + b.z.pow(2)) as f64;
+    let magnitude = (a_magnitude * b_magnitude).sqrt();
+    let angle = (dot as f64 / magnitude).acos();
+    angle.to_degrees()
+}

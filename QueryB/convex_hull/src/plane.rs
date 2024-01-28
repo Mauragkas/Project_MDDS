@@ -22,6 +22,37 @@ impl PartialEq for Plane {
 }
 
 impl Plane {
+    pub fn new(point_a: Point, point_b: Point, point_c: Point) -> Plane {
+        let edge_a = Edge {
+            point1: point_a.clone(),
+            point2: point_b.clone(),
+        };
+
+        let edge_b = Edge {
+            point1: point_b.clone(),
+            point2: point_c.clone(),
+        };
+
+        let edge_c = Edge {
+            point1: point_c.clone(),
+            point2: point_a.clone(),
+        };
+
+        let mut plane = Plane {
+            point_a: point_a,
+            point_b: point_b,
+            point_c: point_c,
+
+            normal: Point { x: 0, y: 0, z: 0 },
+
+            edge_a: edge_a,
+            edge_b: edge_b,
+            edge_c: edge_c,
+        };
+        plane.calculate_normal();
+        plane
+    }
+
     pub fn calculate_normal(&mut self) {
         let vector1 = subtract_vectors(self.point_b.clone(), self.point_a.clone());
         let vector2 = subtract_vectors(self.point_c.clone(), self.point_a.clone());
@@ -30,5 +61,9 @@ impl Plane {
 
     pub fn get_points(&self) -> Vec<Point> {
         vec![self.point_a.clone(), self.point_b.clone(), self.point_c.clone()]
+    }
+
+    pub fn get_edges(&self) -> Vec<Edge> {
+        vec![self.edge_a.clone(), self.edge_b.clone(), self.edge_c.clone()]
     }
 }
