@@ -83,6 +83,8 @@ impl ConvexHull {
     pub fn gift_wrapping(&mut self) {
         self.gift_wrapping_init();
 
+        println!("Edges: {:?}", self.edges);
+
         loop {
             //  find an edge that appears only once in the edges vector
             let mut edges_that_appear_once: Vec<Edge> = Vec::new();
@@ -98,10 +100,13 @@ impl ConvexHull {
                 }
             }
 
+            println!("Edges that appear once: {:?}", edges_that_appear_once);
+
             if edges_that_appear_once.len() == 0 {
                 break;
             }
 
+            let mut planes_to_add: Vec<Plane> = Vec::new();
             for edge in edges_that_appear_once.iter() {
                 // find the plane that contains the edge from the planes vector
                 let plane = self.planes.iter().find(|p| p.edge_a == *edge || p.edge_b == *edge || p.edge_c == *edge).unwrap();
@@ -115,25 +120,35 @@ impl ConvexHull {
                     possible_planes.push(plane);
                 }
 
+                if possible_planes.contains(&plane) {
+                    possible_planes.remove(possible_planes.iter().position(|p| *p == plane.clone()).unwrap());
+                }
+
                 // find the possible plane that has the minimum angle between its normal and the normal of the plane that contains the edge
                 let mut min_angle = 360.0;
                 let mut min_angle_plane = Plane::new(Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 });
                 for plane in possible_planes.iter() {
                     let angle = angle_between_vectors(plane.normal.clone(), plane.normal.clone());
+                    // if angle < min_angle && (angle - 180.0).abs() > 0.0001 {
                     if angle < min_angle {
                         min_angle = angle;
                         min_angle_plane = plane.clone();
                     }
                 }
 
-                // now add the plane abd the edges to the convex hull
-                self.add_plane(min_angle_plane.clone());
-                let edges = min_angle_plane.get_edges();
-                for edge in edges.iter() {
-                    self.edges.push(edge.clone());
-                }
+                planes_to_add.push(min_angle_plane.clone());
                 
             }
+
+            for plane in planes_to_add.iter() {
+                self.add_plane(plane.clone());
+                let temp_edges = plane.get_edges();
+                for edge in temp_edges.iter() {
+                    self.edges.push(edge.clone());
+                }
+                // println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
+            }
+            // break;
         }
         
     }
