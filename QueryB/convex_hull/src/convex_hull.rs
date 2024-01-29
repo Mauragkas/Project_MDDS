@@ -83,7 +83,12 @@ impl ConvexHull {
     pub fn gift_wrapping(&mut self) {
         self.gift_wrapping_init();
 
-        println!("Edges: {:?}", self.edges);
+        // println!("Edges: {:?}", self.edges);
+
+        println!("Planes: ");
+        for plane in self.planes.iter() {
+            println!("\t({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
+        }
 
         loop {
             //  find an edge that appears only once in the edges vector
@@ -100,7 +105,7 @@ impl ConvexHull {
                 }
             }
 
-            println!("Edges that appear once: {:?}", edges_that_appear_once);
+            // println!("Edges that appear once: {:?}", edges_that_appear_once);
 
             if edges_that_appear_once.len() == 0 {
                 break;
@@ -114,10 +119,11 @@ impl ConvexHull {
                 let mut possible_planes: Vec<Plane> = Vec::new();
                 for point in self.points.iter() {
                     // create a plane from the edge and the point
-                    let mut plane = Plane::new(edge.point1.clone(), edge.point2.clone(), point.clone());
-
-                    // push the plane to the possible planes vector
-                    possible_planes.push(plane);
+                    if point != &edge.point1 && point != &edge.point2 {
+                        let mut plane = Plane::new(edge.point1.clone(), edge.point2.clone(), point.clone());
+                        // push the plane to the possible planes vector
+                        possible_planes.push(plane);
+                    }
                 }
 
                 if possible_planes.contains(&plane) {
@@ -129,8 +135,9 @@ impl ConvexHull {
                 let mut min_angle_plane = Plane::new(Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 });
                 for plane in possible_planes.iter() {
                     let angle = angle_between_vectors(plane.normal.clone(), plane.normal.clone());
+                    // println!("Angle: {}", angle);
                     // if angle < min_angle && (angle - 180.0).abs() > 0.0001 {
-                    if angle < min_angle {
+                    if angle < min_angle && angle > 0.0001 {
                         min_angle = angle;
                         min_angle_plane = plane.clone();
                     }
@@ -149,6 +156,10 @@ impl ConvexHull {
                 // println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
             }
             // break;
+            println!("Planes now: ");
+            for plane in self.planes.iter() {
+                println!("\t({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
+            }
         }
         
     }
