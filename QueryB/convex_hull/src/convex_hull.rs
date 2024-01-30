@@ -80,6 +80,7 @@ impl ConvexHull {
 
     }
 
+    // FIXME: This function is not working properly
     pub fn gift_wrapping(&mut self) {
         self.gift_wrapping_init();
 
@@ -105,7 +106,7 @@ impl ConvexHull {
                 }
             }
 
-            // println!("Edges that appear once: {:?}", edges_that_appear_once);
+            println!("Edges that appear once: {:?}", edges_that_appear_once);
 
             if edges_that_appear_once.len() == 0 {
                 break;
@@ -114,7 +115,7 @@ impl ConvexHull {
             let mut planes_to_add: Vec<Plane> = Vec::new();
             for edge in edges_that_appear_once.iter() {
                 // find the plane that contains the edge from the planes vector
-                let plane = self.planes.iter().find(|p| p.edge_a == *edge || p.edge_b == *edge || p.edge_c == *edge).unwrap();
+                let PLANE = self.planes.iter().find(|p| p.edge_a == *edge || p.edge_b == *edge || p.edge_c == *edge).unwrap();
                 // println!("Normal: {:?}", plane.normal);
                 let mut possible_planes: Vec<Plane> = Vec::new();
                 for point in self.points.iter() {
@@ -126,15 +127,15 @@ impl ConvexHull {
                     }
                 }
 
-                if possible_planes.contains(&plane) {
-                    possible_planes.remove(possible_planes.iter().position(|p| *p == plane.clone()).unwrap());
+                if possible_planes.contains(&PLANE) {
+                    possible_planes.remove(possible_planes.iter().position(|p| *p == PLANE.clone()).unwrap());
                 }
 
                 // find the possible plane that has the minimum angle between its normal and the normal of the plane that contains the edge
                 let mut min_angle = 360.0;
                 let mut min_angle_plane = Plane::new(Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 });
                 for plane in possible_planes.iter() {
-                    let angle = angle_between_vectors(plane.normal.clone(), plane.normal.clone());
+                    let angle = angle_between_vectors(PLANE.normal.clone(), plane.normal.clone());
                     // println!("Angle: {}", angle);
                     // if angle < min_angle && (angle - 180.0).abs() > 0.0001 {
                     if angle < min_angle && angle > 0.0001 {
