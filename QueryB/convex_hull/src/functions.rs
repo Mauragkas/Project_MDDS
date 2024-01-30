@@ -47,17 +47,13 @@ pub fn point_above_plane(plane: Plane, point: Point) -> bool {
 }
 
 pub fn angle_between_vectors(normal: Point, vector: Point) -> f64 {
-    if normal == vector {
-        // return 0.0;
-        // println!("same");
-    } else{
-        println!("Normal: {:?}, Vector: {:?}", normal, vector);
-    }
     let dot = dot_product(normal.clone(), vector.clone());
     let normal_length = (normal.x.pow(2) + normal.y.pow(2) + normal.z.pow(2)) as f64;
     let vector_length = (vector.x.pow(2) + vector.y.pow(2) + vector.z.pow(2)) as f64;
     let magnitude = (normal_length * vector_length).sqrt();
     let angle = dot / magnitude;
-    // println!("Angle normal {:?} and vector {:?} is {}", normal, vector, angle.to_degrees());
+    if normal != vector {
+        println!("Angle normal {:?} and vector {:?} is {}", normal, vector, angle.to_degrees());
+    }
     angle.to_degrees()
 }

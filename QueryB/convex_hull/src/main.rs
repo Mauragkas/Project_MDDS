@@ -21,6 +21,7 @@ fn main() {
         Point { x: 0, y: 2, z: 0 },
         Point { x: 0, y: 0, z: 2 },
         Point { x: 2, y: 2, z: 22 },
+        Point { x: 3, y: 3, z: 3 },
     ];
 
     let mut convex_hull = ConvexHull::new(points.to_vec());
@@ -29,8 +30,8 @@ fn main() {
     convex_hull.gift_wrapping();
 
     // println!("{:?}", convex_hull);
-    for plane in convex_hull.planes.iter() {
-        println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
-    }
+    // for plane in convex_hull.planes.iter() {
+    //     println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
+    // }
 
 }

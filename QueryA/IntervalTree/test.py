@@ -35,21 +35,28 @@ class IntervalTree:
                 self.insert(record, node.right)
         node.max_end = max(node.max_end, end)
 
-    # FIXME: This is not working correctly
-    # it seems to be returning all the nodes from the left subtree
     def interval_query(self, start, end, node=None, results=None):
         if results is None:
             results = []
         if not node:
             node = self.root
-        if node:
-            if start <= node.end and end >= node.start:
-                # results.append((node.start, node.end))
-                results.append(node.data)
-            if node.left and node.left.max_end >= start:
-                self.interval_query(start, end, node.left, results)
-            if node.right and node.right.start <= end:
-                self.interval_query(start, end, node.right, results)
+
+        # Stop if we reach a leaf node
+        if not node:
+            return results
+
+        # If the current node's interval intersects with the query interval, add it to results
+        if start <= node.end and end >= node.start:
+            results.append(node.data)
+
+        # Traverse the left subtree if its intervals might intersect with the query interval
+        if node.left and start <= node.left.max_end:
+            self.interval_query(start, end, node.left, results)
+
+        # Traverse the right subtree if its intervals might intersect with the query interval
+        if node.right and end >= node.start:
+            self.interval_query(start, end, node.right, results)
+
         return results
 
     def query(self, point, node=None, results=None):
