@@ -1,9 +1,12 @@
 package com.mycompany.task_e;
 
 import static com.mycompany.task_e.SaveSkylineToJSON.saveSkylinePointsToJsonFile;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -53,58 +56,65 @@ public class Task_E {
   
         
         List<Point> skylinePoints = Skyline.findSkylinePoints(points);
+        
+        List<Point> otherPoints = findotherPoints(points, skylinePoints);
 
         System.out.println("Skyline Points: " + skylinePoints);
 
-        JFrame frame = new JFrame("Positive Only Cartesian Level For All Points");
-        JFrame frame1 = new JFrame("Positive Only Cartesian Level For Skyline Points");
+        JFrame frame1 = new JFrame("Positive Only Cartesian Level");
         
 
-        // Create Dataset
-        XYDataset dataset = createDataset(points);
-        XYDataset dataset1 = createDataset(skylinePoints);
+        XYDataset dataset1 = createDataset(skylinePoints, otherPoints);
 
-        // Create Chart
-        JFreeChart chart = ChartFactory.createScatterPlot(
-            "Cartesian Plot", 
-            "X-Axis", "Y-Axis", dataset, PlotOrientation.VERTICAL,
-            true, true, false);
-        
+
         JFreeChart chart1 = ChartFactory.createScatterPlot(
             "Cartesian Plot", 
             "X-Axis", "Y-Axis", dataset1, PlotOrientation.VERTICAL,
             true, true, false);
 
-        // Add chart to a panel
-        ChartPanel panel = new ChartPanel(chart);
-        frame.setContentPane(panel);
         ChartPanel panel1 = new ChartPanel(chart1);
         frame1.setContentPane(panel1);
 
-        // Display the frame
-        frame.setSize(600, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        
+   
         frame1.setSize(600, 400);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.setVisible(true);
         
-        String filePath = "skyline_points.json";
-        saveSkylinePointsToJsonFile(skylinePoints, filePath);
+        String filePathSK = "skyline_points.json";
+        saveSkylinePointsToJsonFile(skylinePoints, filePathSK);
+        String filePath = "other_points.json";
+        saveSkylinePointsToJsonFile(otherPoints, filePath);
     }
     
-    private static XYDataset createDataset(List<Point> getPoints) {
-        XYSeries series = new XYSeries("Data Series");
+    private static XYDataset createDataset(List<Point> skylinePoints, List<Point> otherPoints) {
+        XYSeries series = new XYSeries("Skyline Points");
+        XYSeries series1 = new XYSeries("Other Series");
 
-        for (Point point : getPoints) {
+        for (Point point : skylinePoints) {
             series.add(point.getX(), point.getY());
+        }
+        for (Point point : otherPoints) {
+            series1.add(point.getX(), point.getY());
         }
         
         
         XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series);
+        dataset.addSeries(series1);
 
         return dataset;
+    }
+    
+    private static List<Point> findotherPoints(List<Point> list1, List<Point> list2) {
+        Set<Point> set2 = new HashSet<>(list2);
+
+        List<Point> uniquePoints = new ArrayList<>();
+        for (Point point : list1) {
+            if (!set2.contains(point)) {
+                uniquePoints.add(point);
+            }
+        }
+
+        return uniquePoints;
     }
 }
