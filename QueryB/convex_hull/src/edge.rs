@@ -1,7 +1,8 @@
 use crate::functions::*;
 use crate::point::Point;
+use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Edge {
     pub point1: Point,
     pub point2: Point,

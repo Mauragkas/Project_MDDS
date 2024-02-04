@@ -2,6 +2,10 @@
 use rand::Rng;
 use rand::distributions::Uniform;
 
+use std::io::Write;
+use std::fs::File;
+use std::path::Path;
+
 use crate::convex_hull::*;
 use crate::point::*;
 use crate::plane::*;
@@ -53,7 +57,19 @@ pub fn angle_between_vectors(normal: Point, vector: Point) -> f64 {
     let magnitude = (normal_length * vector_length).sqrt();
     let angle = dot / magnitude;
     if normal != vector {
-        println!("Angle normal {:?} and vector {:?} is {}", normal, vector, angle.to_degrees());
+        // println!("Angle normal {:?} and vector {:?} is {}", normal, vector, angle.to_degrees());
     }
     angle.to_degrees()
 }
+
+pub fn save_to_json<T>(filename: &str, data: &T)
+where
+    T: serde::Serialize,
+{
+    let serialized = serde_json::to_string_pretty(data).unwrap();
+
+    let mut file = std::fs::File::create(filename).unwrap();
+
+    file.write_all(serialized.as_bytes()).unwrap();
+}
+
