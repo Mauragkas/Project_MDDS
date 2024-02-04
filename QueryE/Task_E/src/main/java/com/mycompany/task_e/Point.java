@@ -1,6 +1,8 @@
 
 package com.mycompany.task_e;
 
+import java.util.Random;
+
 
 public class Point {
     int x;
@@ -24,6 +26,7 @@ public class Point {
         return y;
     }
 
+    
     
     public void setX(int x) {
         this.x = x;
