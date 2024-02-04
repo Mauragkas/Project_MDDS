@@ -1,8 +1,9 @@
 use crate::functions::*;
 use crate::point::Point;
 use crate::edge::Edge;
+use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Plane {
     pub point_a: Point,
     pub point_b: Point,
@@ -17,7 +18,16 @@ pub struct Plane {
 
 impl PartialEq for Plane {
     fn eq(&self, other: &Self) -> bool {
-        (self.point_a == other.point_a && self.point_b == other.point_b && self.point_c == other.point_c) || (self.point_a == other.point_a && self.point_b == other.point_c && self.point_c == other.point_b) || (self.point_a == other.point_b && self.point_b == other.point_a && self.point_c == other.point_c) || (self.point_a == other.point_b && self.point_b == other.point_c && self.point_c == other.point_a) || (self.point_a == other.point_c && self.point_b == other.point_a && self.point_c == other.point_b) || (self.point_a == other.point_c && self.point_b == other.point_b && self.point_c == other.point_a)
+        let permutations = [
+            (self.point_a == other.point_a && self.point_b == other.point_b && self.point_c == other.point_c),
+            (self.point_a == other.point_a && self.point_b == other.point_c && self.point_c == other.point_b),
+            (self.point_a == other.point_b && self.point_b == other.point_a && self.point_c == other.point_c),
+            (self.point_a == other.point_b && self.point_b == other.point_c && self.point_c == other.point_a),
+            (self.point_a == other.point_c && self.point_b == other.point_a && self.point_c == other.point_b),
+            (self.point_a == other.point_c && self.point_b == other.point_b && self.point_c == other.point_a),
+        ];
+
+        permutations.iter().any(|&p| p)
     }
 }
 
@@ -39,15 +49,15 @@ impl Plane {
         };
 
         let mut plane = Plane {
-            point_a: point_a,
-            point_b: point_b,
-            point_c: point_c,
+            point_a,
+            point_b,
+            point_c,
 
             normal: Point { x: 0, y: 0, z: 0 },
 
-            edge_a: edge_a,
-            edge_b: edge_b,
-            edge_c: edge_c,
+            edge_a,
+            edge_b,
+            edge_c,
         };
         plane.calculate_normal();
         plane

@@ -1,6 +1,7 @@
 use crate::convex_hull::*;
+use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Point {
     pub x: i32,
     pub y: i32,

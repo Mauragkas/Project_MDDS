@@ -1,9 +1,10 @@
+use serde::{Deserialize, Serialize};
 use crate::{functions::*, plane};
 use crate::point::Point;
 use crate::plane::Plane;
 use crate::edge::Edge;
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ConvexHull {
     pub points: Vec<Point>,
     pub edges: Vec<Edge>,
@@ -43,6 +44,12 @@ impl ConvexHull {
             }
         }
 
+        // pop these points from the points vector and push them to the outer points vector
+        // for point in points.iter() {
+        //     self.points.remove(self.points.iter().position(|p| *p == *point).unwrap());
+        //     self.outer_points.push(point.clone());
+        // }
+
         // create the first edges
         let edge1 = Edge {
             point1: points[0].clone(),
@@ -65,15 +72,7 @@ impl ConvexHull {
         self.edges.push(edge3.clone());
 
         // create the first plane
-        let plane = Plane {
-            point_a: points[0].clone(),
-            point_b: points[1].clone(),
-            point_c: points[2].clone(),
-            normal: Point { x: 0, y: 0, z: 0 },
-            edge_a: edge1.clone(),
-            edge_b: edge2.clone(),
-            edge_c: edge3.clone(),
-        };
+        let plane = Plane::new(points[0].clone(), points[1].clone(), points[2].clone());
 
         // add the plane to the planes vector
         self.add_plane(plane);
@@ -86,10 +85,10 @@ impl ConvexHull {
 
         // println!("Edges: {:?}", self.edges);
 
-        println!("Planes: ");
-        for plane in self.planes.iter() {
-            println!("\t({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
-        }
+        // println!("Planes: ");
+        // for plane in self.planes.iter() {
+        //     println!("\t({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
+        // }
 
         loop {
             //  find an edge that appears only once in the edges vector
@@ -106,7 +105,7 @@ impl ConvexHull {
                 }
             }
 
-            println!("Edges that appear once: {:?}", edges_that_appear_once);
+            // println!("Edges that appear once: {:?}", edges_that_appear_once);
 
             if edges_that_appear_once.len() == 0 {
                 break;
@@ -115,6 +114,7 @@ impl ConvexHull {
             let mut planes_to_add: Vec<Plane> = Vec::new();
             for edge in edges_that_appear_once.iter() {
                 // find the plane that contains the edge from the planes vector
+                #[allow(non_snake_case)]
                 let PLANE = self.planes.iter().find(|p| p.edge_a == *edge || p.edge_b == *edge || p.edge_c == *edge).unwrap();
                 // println!("Normal: {:?}", plane.normal);
                 let mut possible_planes: Vec<Plane> = Vec::new();
@@ -145,7 +145,6 @@ impl ConvexHull {
                 }
 
                 planes_to_add.push(min_angle_plane.clone());
-                
             }
 
             for plane in planes_to_add.iter() {
@@ -157,10 +156,10 @@ impl ConvexHull {
                 // println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
             }
             // break;
-            println!("Planes now: ");
-            for plane in self.planes.iter() {
-                println!("\t({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
-            }
+            // println!("Planes now: {}", self.planes.len());
+            // for plane in self.planes.iter() {
+            //     println!("\t({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
+            // }
         }
         
     }

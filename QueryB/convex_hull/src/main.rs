@@ -2,6 +2,8 @@
 use rand::Rng;
 use rand::distributions::Uniform;
 use gnuplot::{AxesCommon, Caption, Color, Figure};
+use serde::{Deserialize, Serialize};
+use serde_json::json;
 
 mod convex_hull;
 mod functions;
@@ -15,7 +17,7 @@ use point::*;
 use plane::*;
 
 fn main() {
-    let points = [
+    let mut points: Vec<Point> = vec![
         Point { x: 0, y: 0, z: 0 },
         Point { x: 2, y: 0, z: 0 },
         Point { x: 0, y: 2, z: 0 },
@@ -23,6 +25,8 @@ fn main() {
         Point { x: 2, y: 2, z: 22 },
         Point { x: 3, y: 3, z: 3 },
     ];
+
+    // points.extend(create_rng_ponts(140));
 
     let mut convex_hull = ConvexHull::new(points.to_vec());
     // let mut convex_hull = ConvexHull::new(create_rng_ponts(4));
@@ -33,5 +37,10 @@ fn main() {
     // for plane in convex_hull.planes.iter() {
     //     println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
     // }
+
+    println!("# of planes: {}", convex_hull.planes.len());
+
+    // save the convex hull to a file
+    save_to_json("convex_hull.json", &convex_hull);
 
 }
