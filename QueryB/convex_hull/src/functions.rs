@@ -31,7 +31,6 @@ pub fn populate_point_vec() -> Vec<Point> {
     let data: Vec<Data> = serde_json::from_str(&file).unwrap();
     let mut points: Vec<Point> = Vec::new();
     for d in data.iter() {
-        // points.push(Point::new(Some(d.clone()), d.year_of_release, d.gap_of_years[0], d.gap_of_years[1]));
         points.push(Point::new(
             Some(d.clone()), 
             hash(&d.dblp_record, get_ENV().get_DBLP_RECORDS_LENGTH()) as i32, 

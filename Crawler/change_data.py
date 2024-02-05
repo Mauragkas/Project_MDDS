@@ -20,7 +20,7 @@ try:
         
         # Check if "author's name" exists and is a string, then add or update the surname
         if "author's name" in record and isinstance(record["author's name"], str):
-            surname = record["author's name"].split(' ')[-1].strip()
+            surname = record["author's name"].strip().split(' ')[-1].strip()
             # Add or update the 'surname' field in the record
             record['surname'] = surname
         

@@ -29,6 +29,9 @@ try:
     dblp_records = list(set(dblp_records))
     surnames = list(set(surnames))
 
+    print(f"DBLP records: {len(dblp_records)}")
+    print(f"Surnames: {len(surnames)} {surnames}")
+
     # open env file to write the hash
     with open('../.env', 'w') as file:
         file.write(f"DBLP_RECORDS_LENGTH={len(dblp_records)}\n")
