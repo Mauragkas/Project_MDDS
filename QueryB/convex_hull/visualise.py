@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 import json
 import matplotlib.pyplot as plt
 import sys
@@ -36,6 +37,13 @@ def plot_edges(data):
 def plot_planes(data):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
+
+    # Assuming data['points'] is a list of dictionaries
+    xs = [point['x'] for point in data['points']]  # x coordinates
+    ys = [point['y'] for point in data['points']]  # y coordinates
+    zs = [point['z'] for point in data['points']]  # z coordinates
+    ax.scatter(xs, ys, zs)
+
     i = 0
     for plane in data['planes']:
         # Extract the coordinates for each point
@@ -75,6 +83,9 @@ def main():
 
     mode = sys.argv[1]
     data = get_the_data_from_file('convex_hull.json')
+
+    #remove the saved_images folder files
+    os.system('rm -r saved_images/*')
 
     if mode == 'points':
         plot_points(data)

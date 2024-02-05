@@ -29,7 +29,8 @@ pub fn cross_product(a: Point, b: Point) -> Point {
     }
 }
 
-pub fn dot_product(a: Point, b: Point) -> f64 {
+// pub fn dot_product(a: Point, b: Point) -> f64 {
+pub fn dot_product(a: &Point, b: &Point) -> f64 {
     (a.x * b.x + a.y * b.y + a.z * b.z) as f64
 }
 
@@ -46,12 +47,11 @@ pub fn point_above_plane(plane: Plane, point: Point) -> bool {
     let vector2 = subtract_vectors(plane.point_c, plane.point_a.clone());
     let normal = cross_product(vector1, vector2);
     let point_vector = subtract_vectors(point, plane.point_a);
-    dot_product(normal, point_vector) > 0.0
-    // dot_product(normal, point_vector) < 0
+    dot_product(&normal, &point_vector) > 0.0
 }
 
-pub fn angle_between_vectors(normal: Point, vector: Point) -> f64 {
-    let dot = dot_product(normal.clone(), vector.clone());
+pub fn angle_between_vectors(normal: &Point, vector: &Point) -> f64 {
+    let dot = dot_product(&normal, &vector);
     let normal_length = (normal.x.pow(2) + normal.y.pow(2) + normal.z.pow(2)) as f64;
     let vector_length = (vector.x.pow(2) + vector.y.pow(2) + vector.z.pow(2)) as f64;
     let magnitude = (normal_length * vector_length).sqrt();

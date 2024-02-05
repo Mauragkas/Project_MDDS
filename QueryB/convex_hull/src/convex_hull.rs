@@ -81,7 +81,7 @@ impl ConvexHull {
 
     // FIXME: This function is not working properly
     pub fn gift_wrapping(&mut self) {
-        self.gift_wrapping_init();
+        self.gift_wrapping_init(); // initialize the convex hull with the first plane
 
         // println!("Edges: {:?}", self.edges);
 
@@ -135,7 +135,7 @@ impl ConvexHull {
                 let mut min_angle = 360.0;
                 let mut min_angle_plane = Plane::new(Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 });
                 for plane in possible_planes.iter() {
-                    let angle = angle_between_vectors(PLANE.normal.clone(), plane.normal.clone());
+                    let angle = angle_between_vectors(&PLANE.normal, &plane.normal);
                     // println!("Angle: {}", angle);
                     // if angle < min_angle && (angle - 180.0).abs() > 0.0001 {
                     if angle < min_angle && angle > 0.0001 {

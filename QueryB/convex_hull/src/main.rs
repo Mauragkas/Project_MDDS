@@ -21,12 +21,12 @@ fn main() {
         Point { x: 0, y: 0, z: 0 },
         Point { x: 2, y: 0, z: 0 },
         Point { x: 0, y: 2, z: 0 },
-        Point { x: 0, y: 0, z: 2 },
-        Point { x: 2, y: 2, z: 22 },
-        Point { x: 3, y: 3, z: 3 },
+        // Point { x: 0, y: 0, z: 2 },
+        // Point { x: 2, y: 2, z: 22 },
+        // Point { x: 3, y: 3, z: 3 },
     ];
 
-    // points.extend(create_rng_ponts(140));
+    points.extend(create_rng_ponts(3));
 
     let mut convex_hull = ConvexHull::new(points.to_vec());
     // let mut convex_hull = ConvexHull::new(create_rng_ponts(4));
