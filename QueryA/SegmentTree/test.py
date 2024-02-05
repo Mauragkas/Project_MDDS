@@ -80,38 +80,48 @@ class SegmentTree:
 
         return results
     
-# Read data from JSON file
-filename = '../../pol.json'
-data = json.load(open(filename, 'r'))
+def main():
+    # Read data from JSON file
+    filename = '../../pol.json'
+    data = json.load(open(filename, 'r'))
 
-# Create Segment Tree
-st = SegmentTree(data)
+    # Create Segment Tree
+    st = SegmentTree(data)
 
-queries = [
-    (1995, 1997),
-    (1998, 2000),
-    (2004, 2005),
-    (2009, 2012),
-    (2016, 2017),
-    (2021, 2023),
-]
+    queries = [
+        (1995, 1997),
+        (1998, 2000),
+        (2004, 2005),
+        (2009, 2012),
+        (2016, 2017),
+        (2021, 2023),
+    ]
 
-# Stabbing querying
-print('Stabbing querying:')
-for query in queries:
-    print('Query:', query[0], end=' ')
-    print('Result:', end=' ')
-    for i in st.query(query[0]):
-        print(i['gap of years'], end=' ')
+    # Stabbing querying
+    print('Stabbing querying:')
+    for query in queries:
+        print('Query:', query[0], end=' ')
+        print('Result:', end=' ')
+        for i in st.query(query[0]):
+            print(i['gap of years'], end=' ')
+        print()
+
     print()
 
-print()
+    # Interval querying
+    print('Interval querying:')
+    for query in queries:
+        print('Query:', query, end=' ')
+        print('Result:', end=' ')
+        for i in st.interval_query(*query):
+            print(i['gap of years'], end=' ')
+        print()
 
-# Interval querying
-print('Interval querying:')
-for query in queries:
-    print('Query:', query, end=' ')
-    print('Result:', end=' ')
-    for i in st.interval_query(*query):
-        print(i['gap of years'], end=' ')
-    print()
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
+    except Exception as e:
+        print(e)
+        pass

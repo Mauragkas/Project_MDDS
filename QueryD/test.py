@@ -2,6 +2,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+with open('../.env', 'r') as file:
+    # Read the environment file line by line
+    for line in file:
+        # Split the line by '='
+        key, value = line.split('=')
+        # Remove newline character from value
+        value = value.strip()
+        # Set the environment variable
+        globals()[key] = int(value)
+
+def hash_function(string):
+    """Simple hash function to convert a string to a number."""
+    return sum([ord(c) for c in string]) % DBLP_RECORDS_LENGTH
+
 def orientation(p, q, r):
     """Calculate orientation of ordered triplet (p, q, r). 
     Returns 0 if collinear, 1 if clockwise, 2 if counterclockwise."""
@@ -77,30 +91,40 @@ def find_skyline_layers(points, dominance_case=1, max_layers=None):
         layer_count += 1
     return layers
 
-# Example usage
-points = np.random.rand(30, 2)  # Generate random points
-hull_points = convex_hull(points)
+def main():
+    # Example usage
+    points = np.random.rand(30, 2)  # Generate random points
+    hull_points = convex_hull(points)
 
-# First Plot - Points and Convex Hull
-plt.figure()
-plt.scatter(points[:,0], points[:,1], label='Points')
-for i in range(len(hull_points)):
-    plt.plot([hull_points[i][0], hull_points[(i+1) % len(hull_points)][0]], 
-             [hull_points[i][1], hull_points[(i+1) % len(hull_points)][1]], 'r')
-plt.legend()
+    # First Plot - Points and Convex Hull
+    plt.figure()
+    plt.scatter(points[:,0], points[:,1], label='Points')
+    for i in range(len(hull_points)):
+        plt.plot([hull_points[i][0], hull_points[(i+1) % len(hull_points)][0]], 
+                 [hull_points[i][1], hull_points[(i+1) % len(hull_points)][1]], 'r')
+    plt.legend()
 
-# Second Plot - All Points with Skyline Layers Highlighted
-plt.figure()
-plt.scatter(points[:,0], points[:,1], label='Points')
-layers = find_skyline_layers(points, dominance_case=1, max_layers=3)  # Adjust 'max_layers' as needed
+    # Second Plot - All Points with Skyline Layers Highlighted
+    plt.figure()
+    plt.scatter(points[:,0], points[:,1], label='Points')
+    layers = find_skyline_layers(points, dominance_case=1, max_layers=3)  # Adjust 'max_layers' as needed
 
-for k, layer in enumerate(layers):
-    # Sort the layer points by x-coordinate for meaningful connection with dashed lines
-    sorted_layer = layer[np.argsort(layer[:, 0])]
-    plt.scatter(sorted_layer[:,0], sorted_layer[:,1], label=f'Skyline L-{k+1}')
-    # Connect points with dashed lines if there are more than one point in the layer
-    if len(sorted_layer) > 1:
-        plt.plot(sorted_layer[:,0], sorted_layer[:,1], 'k--')  # 'k--' for black dashed line
+    for k, layer in enumerate(layers):
+        # Sort the layer points by x-coordinate for meaningful connection with dashed lines
+        sorted_layer = layer[np.argsort(layer[:, 0])]
+        plt.scatter(sorted_layer[:,0], sorted_layer[:,1], label=f'Skyline L-{k+1}')
+        # Connect points with dashed lines if there are more than one point in the layer
+        if len(sorted_layer) > 1:
+            plt.plot(sorted_layer[:,0], sorted_layer[:,1], 'k--')  # 'k--' for black dashed line
 
-plt.legend()
-plt.show()
+    plt.legend()
+    plt.show()
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
+    except Exception as e:
+        print(e)
+        pass
