@@ -10,7 +10,8 @@
         "DBLP_Record": "conf/essen/Brown88",
         "Awards": "none",
         "kind": "conference and workshop papers",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -23,7 +24,8 @@
         "DBLP_Record": "books/daglib/0081104",
         "Awards": "none",
         "kind": "books and theses",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -36,7 +38,8 @@
         "DBLP_Record": "journals/lp/Brown97",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -49,7 +52,8 @@
         "DBLP_Record": "conf/alsc/BrownR00",
         "Awards": "none",
         "kind": "conference and workshop papers",
-        "co-author": "Karl Runge"
+        "co-author": "Karl Runge",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -58,11 +62,12 @@
             2000,
             2009
         ],
-        "year of release": "2003",
+        "year of release": 2003,
         "DBLP_Record": "journals/queue/Brown03",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -71,11 +76,12 @@
             2000,
             2009
         ],
-        "year of release": "2004",
+        "year of release": 2004,
         "DBLP_Record": "journals/queue/Brown04",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -88,7 +94,8 @@
         "DBLP_Record": "journals/isu/Brown08",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -101,7 +108,8 @@
         "DBLP_Record": "journals/isu/Brown09",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -114,7 +122,8 @@
         "DBLP_Record": "journals/queue/BrownR10",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "Charles Reams"
+        "co-author": "Charles Reams",
+        "surname": "Brown"
     },
     {
         "author's name": "David J. Brown",
@@ -127,7 +136,8 @@
         "DBLP_Record": "journals/aslib/Brown10",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Brown"
     },
     {
         "author's name": "Charles Reams",
@@ -140,7 +150,8 @@
         "DBLP_Record": "journals/icga/Reams09",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Reams"
     },
     {
         "author's name": "Charles Reams",
@@ -153,7 +164,8 @@
         "DBLP_Record": "journals/queue/BrownR10",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "David J. Brown"
+        "co-author": "David J. Brown",
+        "surname": "Reams"
     },
     {
         "author's name": "Charles Reams",
@@ -166,7 +178,8 @@
         "DBLP_Record": "journals/jea/Reams12",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "none"
+        "co-author": "none",
+        "surname": "Reams"
     },
     {
         "author's name": "Sumithra Devi Kengeri Anjanappa ",
@@ -179,7 +192,8 @@
         "DBLP_Record": "journals/aghcs/DhirA19",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "Shuchi Dhir"
+        "co-author": "Shuchi Dhir",
+        "surname": ""
     },
     {
         "author's name": "Sumithra Devi Kengeri Anjanappa ",
@@ -192,7 +206,8 @@
         "DBLP_Record": "journals/wpc/ShyamalaPD20",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "C. Shyamala, M. Geetha Priya"
+        "co-author": "C. Shyamala, M. Geetha Priya",
+        "surname": ""
     },
     {
         "author's name": "Sumithra Devi Kengeri Anjanappa ",
@@ -205,7 +220,8 @@
         "DBLP_Record": "journals/computer/DhirA20",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "Shuchi Dhir"
+        "co-author": "Shuchi Dhir",
+        "surname": ""
     },
     {
         "author's name": "Sumithra Devi Kengeri Anjanappa ",
@@ -218,7 +234,8 @@
         "DBLP_Record": "journals/sncs/ThilagavathyS23",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "R. Thilagavathy"
+        "co-author": "R. Thilagavathy",
+        "surname": ""
     },
     {
         "author's name": "Charles Reams",
@@ -231,7 +248,8 @@
         "DBLP_Record": "journals/sncs/RajeshwariD23",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "K. S. Rajeshwari"
+        "co-author": "K. S. Rajeshwari",
+        "surname": "Reams"
     },
     {
         "author's name": "Binu M ",
@@ -244,7 +262,8 @@
         "DBLP_Record": "journals/nmnc/MordesonSMM19",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "John N. Mordeson, Aimee Schwab-McCoy, Sunil Mathew"
+        "co-author": "John N. Mordeson, Aimee Schwab-McCoy, Sunil Mathew",
+        "surname": ""
     },
     {
         "author's name": "Binu M ",
@@ -257,7 +276,8 @@
         "DBLP_Record": "journals/nmnc/MordesonMM19",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "John N. Mordeson, Sunil Mathew"
+        "co-author": "John N. Mordeson, Sunil Mathew",
+        "surname": ""
     },
     {
         "author's name": "Binu M ",
@@ -270,7 +290,8 @@
         "DBLP_Record": "journals/fss/MMM19",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "Sunil Mathew, John N. Mordeson"
+        "co-author": "Sunil Mathew, John N. Mordeson",
+        "surname": ""
     },
     {
         "author's name": "Binu M ",
@@ -283,7 +304,8 @@
         "DBLP_Record": "journals/fss/MMM20",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "Sunil Mathew, John N. Mordeson"
+        "co-author": "Sunil Mathew, John N. Mordeson",
+        "surname": ""
     },
     {
         "author's name": "Binu M ",
@@ -296,7 +318,8 @@
         "DBLP_Record": "journals/tfs/MMM21",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "Sunil Mathew, John N. Mordeson"
+        "co-author": "Sunil Mathew, John N. Mordeson",
+        "surname": ""
     },
     {
         "author's name": "Binu M ",
@@ -309,6 +332,7 @@
         "DBLP_Record": "journals/isci/MMM21",
         "Awards": "none",
         "kind": "Journal articles",
-        "co-author": "Sunil Mathew, John N. Mordeson"
+        "co-author": "Sunil Mathew, John N. Mordeson",
+        "surname": ""
     }
 ]

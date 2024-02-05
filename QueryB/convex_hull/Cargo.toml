@@ -10,3 +10,4 @@ rand = "*"
 gnuplot = "*"
 serde = { version = "*", features = ["derive"] }
 serde_json = "*"
+lazy_static = "*"

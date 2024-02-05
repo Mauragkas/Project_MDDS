@@ -8,7 +8,7 @@ try:
     # Read JSON data
     with open(filename, 'r') as file:
         data = json.load(file)
-
+    
     # Iterate through each record
     for record in data:
         # Check if 'gap of years' exists and is a string (unconverted)
@@ -17,6 +17,17 @@ try:
             start_year, end_year = map(lambda x: int(x.strip()), record['gap of years'].split('-'))
             # Replace the string with a tuple
             record['gap of years'] = (start_year, end_year)
+        
+        # Check if "author's name" exists and is a string, then add or update the surname
+        if "author's name" in record and isinstance(record["author's name"], str):
+            surname = record["author's name"].split(' ')[-1].strip()
+            # Add or update the 'surname' field in the record
+            record['surname'] = surname
+        
+        # Check if "year of release" is a string (unconverted)
+        if "year of release" in record and isinstance(record["year of release"], str):
+            # Convert to integer
+            record["year of release"] = int(record["year of release"])
 
     # Write modified data back to JSON
     with open(filename, 'w') as file:

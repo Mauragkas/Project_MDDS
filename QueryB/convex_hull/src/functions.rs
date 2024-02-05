@@ -9,24 +9,45 @@ use std::path::Path;
 use crate::convex_hull::*;
 use crate::point::*;
 use crate::plane::*;
+use crate::hash_stuff::*;
+
+const FILE_LOCATION: &str = "../../pol.json";
 
 pub fn create_rng_ponts(iterations: u32) -> Vec<Point> {
     let vec: Vec<Point> = (0..iterations)
-        .map(|_| Point {
-            x: rand::thread_rng().sample(Uniform::new(0, 20)),
-            y: rand::thread_rng().sample(Uniform::new(0, 20)),
-            z: rand::thread_rng().sample(Uniform::new(0, 20)),
-        })
+        .map(|_| Point::new(
+            None, 
+            rand::thread_rng().sample(Uniform::new(0, 20)),
+            rand::thread_rng().sample(Uniform::new(0, 20)),
+            rand::thread_rng().sample(Uniform::new(0, 20)),
+        ))
         .collect();
     vec
 }
 
-pub fn cross_product(a: Point, b: Point) -> Point {
-    Point {
-        x: a.y * b.z - a.z * b.y,
-        y: a.z * b.x - a.x * b.z,
-        z: a.x * b.y - a.y * b.x,
+pub fn populate_point_vec() -> Vec<Point> {
+    // open the FILE_LOCATION json file and read the contents
+    let file = std::fs::read_to_string(FILE_LOCATION).unwrap();
+    let data: Vec<Data> = serde_json::from_str(&file).unwrap();
+    let mut points: Vec<Point> = Vec::new();
+    for d in data.iter() {
+        // points.push(Point::new(Some(d.clone()), d.year_of_release, d.gap_of_years[0], d.gap_of_years[1]));
+        points.push(Point::new(
+            Some(d.clone()), 
+            hash(&d.dblp_record, get_ENV().get_DBLP_RECORDS_LENGTH()) as i32, 
+            hash(&d.surname, get_ENV().get_SURNAMES_LENGTH()) as i32, 
+            d.year_of_release));
     }
+    points
+}
+
+pub fn cross_product(a: Point, b: Point) -> Point {
+    Point::new(
+        None,
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x,
+    )
 }
 
 // pub fn dot_product(a: Point, b: Point) -> f64 {
@@ -35,11 +56,12 @@ pub fn dot_product(a: &Point, b: &Point) -> f64 {
 }
 
 pub fn subtract_vectors(a: Point, b: Point) -> Point {
-    Point {
-        x: a.x - b.x,
-        y: a.y - b.y,
-        z: a.z - b.z,
-    }
+    Point::new(
+        None,
+        a.x - b.x,
+        a.y - b.y,
+        a.z - b.z,
+    )
 }
 
 pub fn point_above_plane(plane: Plane, point: Point) -> bool {

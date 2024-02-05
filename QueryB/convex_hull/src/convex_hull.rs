@@ -133,7 +133,7 @@ impl ConvexHull {
 
                 // find the possible plane that has the minimum angle between its normal and the normal of the plane that contains the edge
                 let mut min_angle = 360.0;
-                let mut min_angle_plane = Plane::new(Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 }, Point { x: 0, y: 0, z: 0 });
+                let mut min_angle_plane = Plane::new(Point::new(None,0,0,0), Point::new(None,0,0,0), Point::new(None,0,0,0));
                 for plane in possible_planes.iter() {
                     let angle = angle_between_vectors(&PLANE.normal, &plane.normal);
                     // println!("Angle: {}", angle);
@@ -184,7 +184,7 @@ impl ConvexHull {
             point_a: self.points[0].clone(),
             point_b: self.points[1].clone(),
             point_c: self.points[2].clone(),
-            normal: Point { x: 0, y: 0, z: 0 },
+            normal: Point::new(None, 0, 0, 0),
             edge_a: edge1.clone(),
             edge_b: edge2.clone(),
             edge_c: edge3.clone(),
@@ -210,7 +210,7 @@ impl ConvexHull {
                 point_a: temp_points[i].clone(),
                 point_b: temp_points[(i + 1) % 3].clone(),
                 point_c: self.points[3].clone(),
-                normal: Point { x: 0, y: 0, z: 0 },
+                normal: Point::new(None, 0, 0, 0),
                 edge_a: Edge {
                     point1: temp_points[i].clone(),
                     point2: temp_points[(i + 1) % 3].clone(),
@@ -227,8 +227,6 @@ impl ConvexHull {
             // for each plane add the edges to the edges vector
             self.add_plane(plane);
         }
-
-
     }
 
     pub fn add_plane(&mut self, plane: Plane) {
@@ -258,7 +256,7 @@ impl ConvexHull {
                 point_a: temp_points[i].clone(),
                 point_b: temp_points[(i + 1) % 3].clone(),
                 point_c: point.clone(),
-                normal: Point { x: 0, y: 0, z: 0 },
+                normal: Point::new(None, 0, 0, 0),
                 edge_a: Edge {
                     point1: temp_points[i].clone(),
                     point2: temp_points[(i + 1) % 3].clone(),

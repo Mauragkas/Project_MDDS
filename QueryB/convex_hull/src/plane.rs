@@ -53,7 +53,7 @@ impl Plane {
             point_b,
             point_c,
 
-            normal: Point { x: 0, y: 0, z: 0 },
+            normal: Point::new(None, 0, 0, 0),
 
             edge_a,
             edge_b,
