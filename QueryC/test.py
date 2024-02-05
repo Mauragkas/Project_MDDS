@@ -2,6 +2,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+with open('../.env', 'r') as file:
+    # Read the environment file line by line
+    for line in file:
+        # Split the line by '='
+        key, value = line.split('=')
+        # Remove newline character from value
+        value = value.strip()
+        # Set the environment variable
+        globals()[key] = int(value)
+
+def hash_function(string):
+    """Simple hash function to convert a string to a number."""
+    return sum([ord(c) for c in string]) % DBLP_RECORDS_LENGTH
+
 def orientation(p, q, r):
     """Calculate orientation of ordered triplet (p, q, r). 
     Returns 0 if collinear, 1 if clockwise, 2 if counterclockwise."""
@@ -62,26 +76,36 @@ def skyline(points, dominance_case=1):
             skyline_points.append(point)
     return np.array(skyline_points)
 
-# Example usage
-points = np.random.rand(30, 2)  # Generate random points
-hull_points = convex_hull(points)
-skyline_points = skyline(points, dominance_case=1)
-sorted_skyline_points = skyline_points[np.argsort(skyline_points[:, 0])]
+def main():
+    # Example usage
+    points = np.random.rand(30, 2)  # Generate random points
+    hull_points = convex_hull(points)
+    skyline_points = skyline(points, dominance_case=1)
+    sorted_skyline_points = skyline_points[np.argsort(skyline_points[:, 0])]
 
-# First Plot - Points and Convex Hull
-plt.figure()
-plt.scatter(points[:,0], points[:,1], label='Points')
-for i in range(len(hull_points)):
-    plt.plot([hull_points[i][0], hull_points[(i+1) % len(hull_points)][0]], 
-             [hull_points[i][1], hull_points[(i+1) % len(hull_points)][1]], 'r')
-plt.legend()
+    # First Plot - Points and Convex Hull
+    plt.figure()
+    plt.scatter(points[:,0], points[:,1], label='Points')
+    for i in range(len(hull_points)):
+        plt.plot([hull_points[i][0], hull_points[(i+1) % len(hull_points)][0]], 
+                 [hull_points[i][1], hull_points[(i+1) % len(hull_points)][1]], 'r')
+    plt.legend()
 
-# Second Plot - All Points with Skyline Highlighted
-plt.figure()
-plt.scatter(points[:,0], points[:,1], label='Points')
-plt.scatter(skyline_points[:,0], skyline_points[:,1], color='green', label='Skyline Points')
-for i in range(len(sorted_skyline_points) - 1):
-    plt.plot([sorted_skyline_points[i][0], sorted_skyline_points[i+1][0]], 
-             [sorted_skyline_points[i][1], sorted_skyline_points[i+1][1]], 'g--')
-plt.legend()
-plt.show()
+    # Second Plot - All Points with Skyline Highlighted
+    plt.figure()
+    plt.scatter(points[:,0], points[:,1], label='Points')
+    plt.scatter(skyline_points[:,0], skyline_points[:,1], color='green', label='Skyline Points')
+    for i in range(len(sorted_skyline_points) - 1):
+        plt.plot([sorted_skyline_points[i][0], sorted_skyline_points[i+1][0]], 
+                 [sorted_skyline_points[i][1], sorted_skyline_points[i+1][1]], 'g--')
+    plt.legend()
+    plt.show()
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
+    except Exception as e:
+        print(e)
+        pass
