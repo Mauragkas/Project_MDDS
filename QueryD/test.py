@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
 import numpy as np
+import json
 
-with open('../.env', 'r') as file:
+with open(r'C:\Users\Sotiris\Desktop\Project_MDDS-main/.env', 'r') as file:
     # Read the environment file line by line
     for line in file:
         # Split the line by '='
@@ -92,8 +93,30 @@ def find_skyline_layers(points, dominance_case=1, max_layers=None):
     return layers
 
 def main():
-    # Example usage
-    points = np.random.rand(30, 2)  # Generate random points
+    # Path to your JSON file
+    filename = r'C:\Users\Sotiris\Desktop\Project_MDDS-main/pol.json'
+    data= json.load(open(filename, 'r'))
+    
+    points=[]
+    # Iterate through each record
+    i=0
+    for record in data:
+        # Get year of release of each record
+        if 'year of release' in record:
+            yor = record['year of release']
+            print("Year of release:", yor)
+        # Convert DBLP_Record (str) to a hash
+        if 'DBLP_Record' in record:
+            DBLP_Record_Hash = hash_function(record['DBLP_Record'])
+            print(" DBLP_Record:", record['DBLP_Record'], "  DBLP_Record_Hash:", DBLP_Record_Hash)
+        points.append((DBLP_Record_Hash, yor))
+        print("Points: ", points[i])
+        print()
+        i+=1
+    
+    # Convert the list to a NumPy array
+    points = np.array(points)
+
     hull_points = convex_hull(points)
 
     # First Plot - Points and Convex Hull
