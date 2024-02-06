@@ -34,13 +34,14 @@ pub fn populate_point_vec() -> Vec<Point> {
         points.push(Point::new(
             Some(d.clone()), 
             hash(&d.dblp_record, get_ENV().get_DBLP_RECORDS_LENGTH()) as i32, 
-            hash(&d.surname, get_ENV().get_SURNAMES_LENGTH()) as i32, 
-            d.year_of_release));
+            d.year_of_release % 30,
+            hash(&d.surname, get_ENV().get_SURNAMES_LENGTH()) as i32
+        ));
     }
     points
 }
 
-pub fn cross_product(a: Point, b: Point) -> Point {
+pub fn cross_product(a: &Point, b: &Point) -> Point {
     Point::new(
         None,
         a.y * b.z - a.z * b.y,
@@ -54,7 +55,11 @@ pub fn dot_product(a: &Point, b: &Point) -> f64 {
     (a.x * b.x + a.y * b.y + a.z * b.z) as f64
 }
 
-pub fn subtract_vectors(a: Point, b: Point) -> Point {
+pub fn magnitude(vector: &Point) -> f64 {
+    (vector.x.pow(2) + vector.y.pow(2) + vector.z.pow(2)) as f64
+}
+
+pub fn subtract_vectors(a: &Point, b: &Point) -> Point {
     Point::new(
         None,
         a.x - b.x,
@@ -63,12 +68,82 @@ pub fn subtract_vectors(a: Point, b: Point) -> Point {
     )
 }
 
-pub fn point_above_plane(plane: Plane, point: Point) -> bool {
-    let vector1 = subtract_vectors(plane.point_b, plane.point_a.clone());
-    let vector2 = subtract_vectors(plane.point_c, plane.point_a.clone());
-    let normal = cross_product(vector1, vector2);
-    let point_vector = subtract_vectors(point, plane.point_a);
+pub fn point_to_plane_distance(plane: &Plane, point: &Point) -> f64 {
+    let normal = plane.normal.clone();
+    let point_vector = subtract_vectors(&point, &plane.point_a);
+    let dot = dot_product(&normal, &point_vector);
+    let normal_length = magnitude(&normal);
+    let distance = dot.abs() / normal_length; // Ensure the distance is non-negative
+    distance
+}
+
+pub fn farthest_point_from_plane(plane: &Plane, points: &[Point]) -> Option<Point> {
+    let mut max_distance = 0.0;
+    let mut furthest_point = Point::new(None, 0, 0, 0);
+    for point in points.iter() {
+        let distance = point_to_plane_distance(&plane, &point);
+        if distance > max_distance {
+            max_distance = distance;
+            furthest_point = point.clone();
+        }
+    }
+    // println!("Max distance: {}", max_distance);
+    // furthest_point
+    match max_distance {
+        0.0 => None,
+        _ => Some(furthest_point),
+    }
+}
+
+pub fn point_above_plane(plane: &Plane, point: &Point) -> bool {
+    let vector1 = subtract_vectors(&plane.point_b, &plane.point_a);
+    let vector2 = subtract_vectors(&plane.point_c, &plane.point_a);
+    let normal = cross_product(&vector1, &vector2);
+    let point_vector = subtract_vectors(&point, &plane.point_a);
     dot_product(&normal, &point_vector) > 0.0
+}
+
+pub fn outside_set(plane: &Plane, points: &[Point]) -> Vec<Point> {
+    points.iter()
+        .filter(|&point| !point_above_plane(&plane, &point))
+        .cloned() // Clone here is fine as we're building a new Vec
+        .collect()
+}
+
+fn are_collinear(a: &Point, b: &Point, c: &Point) -> bool {
+    let vector1 = subtract_vectors(&b, &a);
+    let vector2 = subtract_vectors(&c, &a);
+    let normal = cross_product(&vector1, &vector2);
+    magnitude(&normal) < 0.0001
+}
+
+fn are_coplanar(a: &Point, b: &Point, c: &Point, d: &Point) -> bool {
+    let vector1 = subtract_vectors(&b, &a);
+    let vector2 = subtract_vectors(&c, &a);
+    let vector3 = subtract_vectors(&d, &a);
+    let normal = cross_product(&vector1, &vector2);
+    dot_product(&normal, &vector3) < 0.0001
+}
+
+pub fn find_non_collinear_points(points: &Vec<Point>) -> Option<Vec<Point>> {
+    let n = points.len();
+    if n < 4 {
+        panic!("There are less than 4 points in the point vector");
+    }
+    for i in 0..n {
+        for j in i+1..n {
+            for k in j+1..n {
+                if !are_collinear(&points[i], &points[j], &points[k]) {
+                    for l in k+1..n {
+                        if !are_coplanar(&points[i], &points[j], &points[k], &points[l]) {
+                            return Some(vec![points[i].clone(), points[j].clone(), points[k].clone(), points[l].clone()]);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    None
 }
 
 pub fn angle_between_vectors(normal: &Point, vector: &Point) -> f64 {
@@ -88,9 +163,7 @@ where
     T: serde::Serialize,
 {
     let serialized = serde_json::to_string_pretty(data).unwrap();
-
     let mut file = std::fs::File::create(filename).unwrap();
-
     file.write_all(serialized.as_bytes()).unwrap();
 }
 

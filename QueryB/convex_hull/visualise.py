@@ -24,8 +24,8 @@ def plot_edges(data):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     for edge in data['edges']:
-        # Access the coordinates directly from point1 and point2
-        p1, p2 = edge['point1'], edge['point2']
+        # Access the coordinates directly from start and end
+        p1, p2 = edge['start'], edge['end']
         x_values = [p1['x'], p2['x']]
         y_values = [p1['y'], p2['y']]
         z_values = [p1['z'], p2['z']]
@@ -65,10 +65,6 @@ def plot_planes(data):
         centroid_z = (za + zb + zc) / 3
         normal = plane['normal']
 
-        ax.set_xlim([0, 10])
-        ax.set_ylim([0, 10])
-        ax.set_zlim([0, 10])
-
         ax.quiver(centroid_x, centroid_y, centroid_z, normal['x'], normal['y'], normal['z'], length=0.5, normalize=True)
         # save a the plot at the curent state as a png file in folder saved_images the name should contain the number of the iteration
         plt.savefig('saved_images/iteration_{}.png'.format(i))
@@ -97,4 +93,11 @@ def main():
         print("Invalid argument. Use 'points', 'edges', or 'planes'.")
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Exiting...")
+        sys.exit(0)
+    except Exception as e:
+        print("An error occurred: {}".format(e))
+        sys.exit(1)

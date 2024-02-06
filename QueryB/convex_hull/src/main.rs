@@ -29,27 +29,33 @@ fn main() {
     //     // Point { x: 3, y: 3, z: 3 },
     // ];
 
+    // points.extend(populate_point_vec());
+
+    // let mut points: Vec<Point> = populate_point_vec();
+
+    let points: Vec<Point> = create_rng_ponts(10);
+
     // points.extend(create_rng_ponts(3));
 
-    // let mut convex_hull = ConvexHull::new(points.to_vec());
-    // // let mut convex_hull = ConvexHull::new(create_rng_ponts(4));
-    // // convex_hull.initialize();
+    let mut convex_hull = ConvexHull::new(points.to_vec());
+    // let mut convex_hull = ConvexHull::new(create_rng_ponts(4));
+    // convex_hull.initialize();
     // convex_hull.gift_wrapping();
+    convex_hull.quick_hull();
 
-    // // println!("{:?}", convex_hull);
-    // // for plane in convex_hull.planes.iter() {
-    // //     println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
-    // // }
+    // println!("{:?}", convex_hull);
+    // for plane in convex_hull.planes.iter() {
+    //     println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
+    // }
 
-    // println!("# of planes: {}", convex_hull.planes.len());
+    println!("# of planes: {}", convex_hull.planes.len());
 
-    // // save the convex hull to a file
-    // save_to_json("convex_hull.json", &convex_hull);
+    // save the convex hull to a file
+    save_to_json("convex_hull.json", &convex_hull);
+
+    for point in convex_hull.points.iter() {
+        // println!("({:?}, {:?}, {:?})", point.x, point.y, point.z);
+    }
 
     // println!("{:?}", get_ENV());
-    let points = populate_point_vec();
-
-    for p in points.iter() {
-        println!("({:?}, {:?}, {:?})", p.x, p.y, p.z);
-    }
 }

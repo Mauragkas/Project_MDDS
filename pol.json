@@ -200,7 +200,7 @@
         "title": "Cross Layer QoS Guaranteed Fault Tolerance for Data Transmission in Mobile Wireless Sensor Networks.",
         "gap of years": [
             2020,
-            2029
+            2024
         ],
         "year of release": 2020,
         "DBLP_Record": "journals/wpc/ShyamalaPD20",
@@ -214,7 +214,7 @@
         "title": "The Use of Biometric Fingerprints for On-the-Fly Digital Signing of Documents.",
         "gap of years": [
             2020,
-            2029
+            2024
         ],
         "year of release": 2020,
         "DBLP_Record": "journals/computer/DhirA20",
@@ -228,7 +228,7 @@
         "title": "ROS-Enabled Collaborative Navigation and Manipulation with Heterogeneous Robots.",
         "gap of years": [
             2020,
-            2029
+            2024
         ],
         "year of release": 2023,
         "DBLP_Record": "journals/sncs/ThilagavathyS23",
@@ -298,7 +298,7 @@
         "title": "Wiener index of a fuzzy graph and application to illegal immigration networks.",
         "gap of years": [
             2020,
-            2029
+            2024
         ],
         "year of release": 2020,
         "DBLP_Record": "journals/fss/MMM20",
@@ -312,7 +312,7 @@
         "title": "Cyclic Connectivity Index of Fuzzy Graphs.",
         "gap of years": [
             2020,
-            2029
+            2024
         ],
         "year of release": 2021,
         "DBLP_Record": "journals/tfs/MMM21",
@@ -326,7 +326,7 @@
         "title": "Connectivity status of fuzzy graphs.",
         "gap of years": [
             2020,
-            2029
+            2024
         ],
         "year of release": 2021,
         "DBLP_Record": "journals/isci/MMM21",
@@ -334,5 +334,579 @@
         "kind": "Journal articles",
         "co-author": "Sunil Mathew, John N. Mordeson",
         "surname": "M"
+    },
+    {
+        "author's name": "Luis Contesse B",
+        "title": "A general algorithm for determining all essential solutions and inequalities for any convex polyhedron.",
+        "gap of years": [
+            1990,
+            1999
+        ],
+        "year of release": 1994,
+        "DBLP_Record": "journals/anor/B94",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none",
+        "surname": "B"
+    },
+    {
+        "author's name": "Luis Contesse B",
+        "title": "A Mixed-Integer Programming Model for Gas Purchase and Transportation.",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2005,
+        "DBLP_Record": "journals/anor/ContesseFM05",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Juan-Carlos Ferrer, Sergio Maturana",
+        "surname": "B"
+    },
+    {
+        "author's name": "Luis Contesse B",
+        "title": "A Mixed-Integer Programming Model for Gas Purchase and Transportation.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2017,
+        "DBLP_Record": "journals/rairo/ContesseHP17",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Jean-Baptiste Hiriart-Urruty, Jean-Paul Penot",
+        "surname": "B"
+    },
+    {
+        "author's name": "Alekya B",
+        "title": "Stiffness Characterization of Healthy and Deficient Tracheal Cartilage Segments using Micromachined Piezoresistive Force Sensor.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2021,
+        "DBLP_Record": "conf/biocas/BVP21",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": " V. S. N. Sitaramgupta V, Hardik J. Pandya",
+        "surname": "B"
+    },
+    {
+        "author's name": "Alekya B",
+        "title": "Electromechanical Characterization of Human Brain Tissues: A Potential Biomarker for Tumor Delineation. ",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2022,
+        "DBLP_Record": "journals/tbe/BSBRVMP22",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Arjun BS, Hari RS, Vikas V, Anita Mahadevan, Hardik J. Pandya",
+        "surname": "B"
+    },
+    {
+        "author's name": "Alekya B",
+        "title": "Electromechanical Characterization of Human Brain Tissues: A Potential Biomarker for Tumor Delineation. ",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2023,
+        "DBLP_Record": "conf/embc/BSMSRP23",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Aswin S, Akhil M, Shenoy S. Siddesh, Sanjay Rao, Hardik J. Pandya",
+        "surname": "B"
+    },
+    {
+        "author's name": "Milind B",
+        "title": "Building Combinatorial Test Input Model from Use Case Artefacts. ",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2017,
+        "DBLP_Record": "conf/icst/SatishBNR17",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Preeti Satish, Medhini S. Narayan, Krishnan Rangarajan",
+        "surname": "B"
+    },
+    {
+        "author's name": "Cheng-Guo E",
+        "title": "A Scheme of Resource Allocation and Stability for Peer-to-Peer File-Sharing Networks.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2016,
+        "DBLP_Record": "journals/amcs/LiSES16",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Shiyong Li, Wei Sun, Lina Shi",
+        "surname": "E"
+    },
+    {
+        "author's name": "Cheng-Guo E",
+        "title": "The interval Shapley value of an M/M/1 service system.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2017,
+        "DBLP_Record": "journals/amcs/ELL17",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Quan-Lin Li, Shiyong Li",
+        "surname": "E"
+    },
+    {
+        "author's name": "Cheng-Guo E",
+        "title": "Cooperative game in parallel service systems with nonexponential service times. ",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2019,
+        "DBLP_Record": "journals/jifs/ELL19",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Quan-Lin Li, Shiyong Li",
+        "surname": "E"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Visualization of Geostress Tensor along Oil Well Trajectory. ",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2001,
+        "DBLP_Record": "conf/cgi/ZhouLM01",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Yuan Zhou,Songde Ma",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "An Algorithmic Approach for Sensitivity Analysis of Perturbed Quasi-Birth-and-Death Processes. ",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2004,
+        "DBLP_Record": "journals/questa/LiL04",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Yuan Zhou, Liming Liu",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Performance Modeling and Analysis for Resource Scheduling in Data Grids.",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2005,
+        "DBLP_Record": "conf/npc/LiLLS05",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Yajuan Li, Chuang Lin, Zhiguang Shan",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Tail asymptotics for the queue length in an M/G/1 retrial queue.",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2006,
+        "DBLP_Record": "journals/questa/ShangLL06",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Weixin Shang, Liming Liu",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Semiconductor system with multiple closed-loops constrains. ",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2007,
+        "DBLP_Record": "conf/case/LiZL07",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Na Li, Li Zheng",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Performance Analytic Model for Authentication Mechanism. ",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2008,
+        "DBLP_Record": "conf/icnsc/LiuYLDH08",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Wei Liu, Lin Yang, Dai Hao, Bin Hou",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Hybrid simulation of biochemical systems using hybrid adaptive Petri nets. ",
+        "gap of years": [
+            2000,
+            2009
+        ],
+        "year of release": 2009,
+        "DBLP_Record": "conf/valuetools/YangLL09",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Hongkun Yang, Chuang Lin",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Doubly Exponential Solution for Randomized Load Balancing Models with Markovian Arrival Processes and PH Service Times. ",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2010,
+        "DBLP_Record": "journals/corr/abs-1009-4970",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Super-Exponential Solution in Markovian Supermarket Models: Framework and Challenge.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2011,
+        "DBLP_Record": "journals/corr/abs-1106-0787",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Tailed Probabilities in Queueing Processes.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2012,
+        "DBLP_Record": "journals/corr/abs-1209-5604",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "none",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "A Computational Framework for the Mixing Times in the QBD Processes with Infinitely-Many Levels. ",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2013,
+        "DBLP_Record": "journals/corr/LiC13",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Jing Cao",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Equilibrium balking strategies of customers in Markovian queues with two-stage working vacations. ",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2014,
+        "DBLP_Record": "journals/amc/SunLL14",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Wei Sun, Shiyong Li",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Optimal energy-efficient policies for data centers through sensitivity-based optimization.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2019,
+        "DBLP_Record": "journals/deds/MaXL19",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Jing-Yu Ma, Li Xia",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Block-Structured Double-Ended Queues and Bilateral QBD Processes.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2020,
+        "DBLP_Record": "journals/corr/abs-2001-00946",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Heng-Li Liu, Yan-Xia Chang, Chi Zhang",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Sensitivity-Based Optimization for Blockchain Selfish Mining.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2021,
+        "DBLP_Record": "conf/aaim/MaL21",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Jing-Yu Ma",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Anthropomorphic Reaching Movement Generating Method for Human-Like Upper Limb Robot.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2022,
+        "DBLP_Record": "journals/tcyb/HeXZXLCS22",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Chang He, Xiao-Wei Xu, Xiong-Fei Zheng, Cai-Hua Xiong, Wenbin Chen, Baiyang Sun",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Quan-Lin Li",
+        "title": "Information Theory of Blockchain Systems.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2023,
+        "DBLP_Record": "journals/corr/abs-2309-04959",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Yaqian Ma, Jing-Yu Ma, Yan-Xia Chang",
+        "surname": "Li"
+    },
+    {
+        "author's name": "Umberto Dello Iacono",
+        "title": "GeoGebra in e-learning environments: a possible integration in mathematics and beyond.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2019,
+        "DBLP_Record": "journals/jaihc/AlbanoI19",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Giovannina Albano",
+        "surname": "Iacono"
+    },
+    {
+        "author's name": "Umberto Dello Iacono",
+        "title": "A Technological Storytelling Approach to Nurture Mathematical Argumentation.",
+        "gap of years": [
+            2020,
+            2023
+        ],
+        "year of release": 2020,
+        "DBLP_Record": "conf/csedu/AlbanoIF20",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Giovannina Albano, Giuseppe Fiorentino",
+        "surname": "Iacono"
+    },
+    {
+        "author's name": "Umberto Dello Iacono",
+        "title": "Digital Inquiry Through Games.",
+        "gap of years": [
+            2020,
+            2023
+        ],
+        "year of release": 2021,
+        "DBLP_Record": "journals/tkl/AlbanoAI21",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Giovannina Albano, Ferdinando Arzarello",
+        "surname": "Iacono"
+    },
+    {
+        "author's name": "Robert Iacovazzi",
+        "title": "Evaluation of GOES-16 ABI on-orbit performance using GSICS.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2017,
+        "DBLP_Record": "conf/igarss/WuYKESIC17",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Xiangqian Wu, Fangfang Yu, Vladimir Kondratovich, Boryana Efremova, Xi Shao, Changyong Cao",
+        "surname": "Iacovazzi"
+    },
+    {
+        "author's name": "Robert Iacovazzi",
+        "title": "Radiometric quality assessment of GOES-16 ABI L1b images.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2018,
+        "DBLP_Record": "conf/eos/WangWQYISKY18",
+        "Awards": "none",
+        "kind": "conference and workshop papers",
+        "co-author": "Zhipeng Wang, Xiangqian Wu, Haifeng Qian, Fangfang Yu, Xi Shao, Vladimir Kondratovich, Hyelim Yoo",
+        "surname": "Iacovazzi"
+    },
+    {
+        "author's name": "Robert Iacovazzi",
+        "title": "NOAA Operational Microwave Sounding Radiometer Data Quality Monitoring and Anomaly Assessment Using COSMIC GNSS Radio-Occultation Soundings.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2020,
+        "DBLP_Record": "journals/remotesensing/Iacovazzi0SL20",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Lin Lin, Ninghai Sun, Quanhua (Mark) Liu",
+        "surname": "Iacovazzi"
+    },
+    {
+        "author's name": "Robert Iacovazzi",
+        "title": "Improving ATMS Remapping Accuracy Using Adaptive Window and Noise-Tuning Method in Backus-Gilbert Inversion.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2022,
+        "DBLP_Record": "journals/tgrs/ZhouYI22",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Jun Zhou, Hu Yang",
+        "surname": "Iacovazzi"
+    },
+    {
+        "author's name": "Robert Iacovazzi",
+        "title": "ATMS Radiance Data Products' Calibration and Evaluation.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2022,
+        "DBLP_Record": "journals/tgrs/YangISLLSFKLA22",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Hu Yang, Ninghai Sun, Quanhua (Mark) Liu, Robert Vincent Leslie, Matthew Sammons, James Fuentes, Edward Kim, Cheng-Hsuan Lyu, Saji Abraham",
+        "surname": "Iacovazzi"
+    },
+    {
+        "author's name": "Naveen Kumar S. K",
+        "title": "Hybrid approach for Image Encryption Using SCAN Patterns and Carrier Images.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2010,
+        "DBLP_Record": "journals/corr/abs-1003-1239",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Panduranga H. T",
+        "surname": "K"
+    },
+    {
+        "author's name": "Naveen Kumar S. K",
+        "title": "Hardware Software Co-Simulation of the Multiple Image Encryption Technique Using the Xilinx System Generator.",
+        "gap of years": [
+            2010,
+            2019
+        ],
+        "year of release": 2013,
+        "DBLP_Record": "journals/jips/TKS13",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Panduranga H. T, Sharath Kumar H. S",
+        "surname": "K"
+    },
+    {
+        "author's name": "Ashokkumar S. R",
+        "title": "A KSOM based neural network model for classifying the epilepsy using adjustable analytic wavelet transform.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2020,
+        "DBLP_Record": "journals/mta/RGS20",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "MohanBabu G, Anupallavi S:",
+        "surname": "R"
+    },
+    {
+        "author's name": "Ashokkumar S. R",
+        "title": "Implementation of deep neural networks for classifying electroencephalogram signal using fractional S-transform for epileptic seizure detection.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2021,
+        "DBLP_Record": "journals/imst/RSPJ21",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Anupallavi S, M. Premkumar, V. Jeevanantham",
+        "surname": "R"
+    },
+    {
+        "author's name": "Ashokkumar S. R",
+        "title": "Emotion identification by dynamic entropy and ensemble learning from electroencephalogram signals.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2022,
+        "DBLP_Record": "journals/imst/RSGPJ22",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "Anupallavi S, MohanBabu G, M. Premkumar, V. Jeevanantham",
+        "surname": "R"
+    },
+    {
+        "author's name": "Ashokkumar S. R",
+        "title": "Scalable and Energy Efficient Cluster Based Anomaly Detection Against Denial of Service Attacks in Wireless Sensor Networks.",
+        "gap of years": [
+            2020,
+            2024
+        ],
+        "year of release": 2023,
+        "DBLP_Record": "journals/wpc/PremkumarRJGS23",
+        "Awards": "none",
+        "kind": "Journal articles",
+        "co-author": "M. Premkumar, V. Jeevanantham, MohanBabu G, Anupallavi S",
+        "surname": "R"
     }
 ]

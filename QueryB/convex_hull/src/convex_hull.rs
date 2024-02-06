@@ -51,20 +51,11 @@ impl ConvexHull {
         // }
 
         // create the first edges
-        let edge1 = Edge {
-            point1: points[0].clone(),
-            point2: points[1].clone(),
-        };
+        let edge1 = Edge::new(points[0].clone(), points[1].clone());
 
-        let edge2 = Edge {
-            point1: points[1].clone(),
-            point2: points[2].clone(),
-        };
+        let edge2 = Edge::new(points[1].clone(), points[2].clone());
 
-        let edge3 = Edge {
-            point1: points[2].clone(),
-            point2: points[0].clone(),
-        };
+        let edge3 = Edge::new(points[2].clone(), points[0].clone());
 
         // add the edges to the edges vector
         self.edges.push(edge1.clone());
@@ -120,8 +111,8 @@ impl ConvexHull {
                 let mut possible_planes: Vec<Plane> = Vec::new();
                 for point in self.points.iter() {
                     // create a plane from the edge and the point
-                    if point != &edge.point1 && point != &edge.point2 {
-                        let mut plane = Plane::new(edge.point1.clone(), edge.point2.clone(), point.clone());
+                    if point != &edge.start && point != &edge.end {
+                        let mut plane = Plane::new(edge.start.clone(), edge.end.clone(), point.clone());
                         // push the plane to the possible planes vector
                         possible_planes.push(plane);
                     }
@@ -164,69 +155,114 @@ impl ConvexHull {
         
     }
     
-    // a function to initialize the convex hull with the first four points
-    pub fn initialize(&mut self) {
-        // create the first edges
-        let edge1 = Edge {
-            point1: self.points[0].clone(),
-            point2: self.points[1].clone(),
-        };
-        let edge2 = Edge {
-            point1: self.points[1].clone(),
-            point2: self.points[2].clone(),
-        };
-        let edge3 = Edge {
-            point1: self.points[2].clone(),
-            point2: self.points[0].clone(),
-        };
+    fn init_simplex(&mut self) {
+        // get 4 non collinear points
+        let mut points: Vec<Point> = Vec::new();
+        match find_non_collinear_points(&self.points) {
+            Some(p) => points = p,
+            None => println!("No non collinear points found"),
+        }
 
-        let plane = Plane {
-            point_a: self.points[0].clone(),
-            point_b: self.points[1].clone(),
-            point_c: self.points[2].clone(),
-            normal: Point::new(None, 0, 0, 0),
-            edge_a: edge1.clone(),
-            edge_b: edge2.clone(),
-            edge_c: edge3.clone(),
-        };
+        // create the first 4 planes
+        let plane1 = Plane::new(points[1].clone(), points[0].clone(), points[2].clone());
+        let plane2 = Plane::new(points[0].clone(), points[1].clone(), points[3].clone());
+        let plane3 = Plane::new(points[2].clone(), points[0].clone(), points[3].clone());
+        let plane4 = Plane::new(points[1].clone(), points[2].clone(), points[3].clone());
+
+        // add the planes to the planes vector
+        self.planes.push(plane1);
+        self.planes.push(plane2);
+        self.planes.push(plane3);
+        self.planes.push(plane4);
+
+        // remove the first 4 points from the points vector
+        for point in points.iter() {
+            self.points.remove(self.points.iter().position(|p| *p == *point).unwrap());
+        }
+
+        // create the first 6 edge
+        let edge1 = Edge::new(points[0].clone(), points[1].clone());
+        let edge2 = Edge::new(points[0].clone(), points[2].clone());
+        let edge3 = Edge::new(points[0].clone(), points[3].clone());
+        let edge4 = Edge::new(points[1].clone(), points[2].clone());
+        let edge5 = Edge::new(points[1].clone(), points[3].clone());
+        let edge6 = Edge::new(points[2].clone(), points[3].clone());
 
         // add the edges to the edges vector
         self.edges.push(edge1);
         self.edges.push(edge2);
         self.edges.push(edge3);
+        self.edges.push(edge4);
+        self.edges.push(edge5);
+        self.edges.push(edge6);
+    }
 
-        self.add_plane(plane);
-        // println!("Point is above plane");
-        let temp_points = self.planes[0].get_points();
-        for i in 0..3 {
-            let edge = Edge {
-                point1: temp_points[i].clone(),
-                point2: self.points[3].clone(),
-            };
-            self.edges.push(edge);
+    fn construct_hull(&mut self) {
+        let mut planes_to_add: Vec<Plane> = Vec::new();
+        let mut planes_to_remove: Vec<Plane> = Vec::new();
+        for plane in self.planes.iter() {
+            let mut os: Vec<Point> = Vec::new();
+
+            for point in self.points.iter() {
+                if point_above_plane(&plane, &point) {
+                    os.push(point.clone());
+                }
+            }
+
+            if os.is_empty() {
+                // planes_to_add.push(plane.clone());
+                continue;
+            } else {
+                let farthest_point = match farthest_point_from_plane(&plane, &os) {
+                    Some(p) => p,
+                    None => continue,
+                };
+                println!("Adding point: {:?}", farthest_point);
+                let plane1 = Plane::new(plane.point_a.clone(), plane.point_b.clone(), farthest_point.clone());
+                let plane2 = Plane::new(plane.point_b.clone(), plane.point_c.clone(), farthest_point.clone());
+                let plane3 = Plane::new(plane.point_c.clone(), plane.point_a.clone(), farthest_point.clone());
+                planes_to_add.push(plane1);
+                planes_to_add.push(plane2);
+                planes_to_add.push(plane3);
+                planes_to_remove.push(plane.clone());
+            }
         }
-        for i in 0..3 {
-            let plane = Plane {
-                point_a: temp_points[i].clone(),
-                point_b: temp_points[(i + 1) % 3].clone(),
-                point_c: self.points[3].clone(),
-                normal: Point::new(None, 0, 0, 0),
-                edge_a: Edge {
-                    point1: temp_points[i].clone(),
-                    point2: temp_points[(i + 1) % 3].clone(),
-                },
-                edge_b: Edge {
-                    point1: temp_points[(i + 1) % 3].clone(),
-                    point2: self.points[3].clone(),
-                },
-                edge_c: Edge {
-                    point1: self.points[3].clone(),
-                    point2: temp_points[i].clone(),
-                },
-            };
-            // for each plane add the edges to the edges vector
-            self.add_plane(plane);
+
+        if planes_to_add.is_empty() {
+            return;
+        } else {
+            println!("Planes to add: {}", planes_to_add.len());
         }
+
+        for plane in planes_to_add.iter() {
+            // println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
+            // self.add_plane(plane.clone());
+            if !self.planes.contains(plane) {
+                self.add_plane(plane.clone());
+            }
+        }
+
+        for plane in planes_to_remove.iter() {
+            self.remove_plane(plane.clone());
+        }
+
+        self.construct_hull();
+    }
+
+    pub fn quick_hull(&mut self) {
+        self.init_simplex();
+
+        self.construct_hull();
+
+        // remove duplicate planes
+        let mut unique_planes: Vec<Plane> = Vec::new();
+        for plane in self.planes.iter() {
+            if !unique_planes.contains(plane) {
+                unique_planes.push(plane.clone());
+            }
+        }
+        self.planes = unique_planes;
+        
     }
 
     pub fn add_plane(&mut self, plane: Plane) {
@@ -239,45 +275,4 @@ impl ConvexHull {
         self.planes.remove(self.planes.iter().position(|p| *p == plane).unwrap());
     }
 
-    pub fn add_point(&mut self, point: Point, plane: Plane) {
-        let temp_points = plane.get_points();
-        // craete new edges
-        for i in 0..3 {
-            let edge = Edge {
-                point1: temp_points[i].clone(),
-                point2: point.clone(),
-            };
-            // add new edges to convex hull
-            self.edges.push(edge);
-        }
-        // create new planes
-        for i in 0..3 {
-            let plane = Plane {
-                point_a: temp_points[i].clone(),
-                point_b: temp_points[(i + 1) % 3].clone(),
-                point_c: point.clone(),
-                normal: Point::new(None, 0, 0, 0),
-                edge_a: Edge {
-                    point1: temp_points[i].clone(),
-                    point2: temp_points[(i + 1) % 3].clone(),
-                },
-                edge_b: Edge {
-                    point1: temp_points[(i + 1) % 3].clone(),
-                    point2: point.clone(),
-                },
-                edge_c: Edge {
-                    point1: point.clone(),
-                    point2: temp_points[i].clone(),
-                },
-            };
-            self.add_plane(plane);
-        }
-
-        // remove the plane from the planes vector
-        self.remove_plane(plane.clone());
-
-        // add the point to the points vector
-        self.points.push(point.clone());
-    }
-    
 }
