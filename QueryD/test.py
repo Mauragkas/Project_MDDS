@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import json
 
-with open(r'C:\Users\Sotiris\Desktop\Project_MDDS-main/.env', 'r') as file:
+with open('../.env', 'r') as file:
     # Read the environment file line by line
     for line in file:
         # Split the line by '='
@@ -94,7 +94,7 @@ def find_skyline_layers(points, dominance_case=1, max_layers=None):
 
 def main():
     # Path to your JSON file
-    filename = r'C:\Users\Sotiris\Desktop\Project_MDDS-main/pol.json'
+    filename = '../pol.json'
     data= json.load(open(filename, 'r'))
     
     points=[]
