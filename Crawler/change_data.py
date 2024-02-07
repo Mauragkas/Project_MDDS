@@ -1,8 +1,9 @@
 #!/usr/bin/env python 
 import json
+import random
 
 # Path to your JSON file
-filename = '../pol.json'
+filename = r'C:\Users\Sotiris\Downloads\Project_MDDS-main (4)\Project_MDDS-main/pol.json'
 
 try:
     # Read JSON data
@@ -28,6 +29,14 @@ try:
         if "year of release" in record and isinstance(record["year of release"], str):
             # Convert to integer
             record["year of release"] = int(record["year of release"])
+        
+        # Check if "award" is a string (unconverted)
+        if "Awards" in record and isinstance(record["Awards"], str):
+            #Generate random number for awards (0-2)
+            #random_number = random.randint(0, 2)
+            #record["Awards"] = random_number
+            # Convert to integer
+            record["Awards"] = int(record["Awards"])
 
     # Write modified data back to JSON
     with open(filename, 'w') as file:
