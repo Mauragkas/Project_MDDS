@@ -82,7 +82,7 @@ class SegmentTree:
     
 def main():
     # Read data from JSON file
-    filename = '../../pol.json'
+    filename = r'C:\Users\Sotiris\Desktop\Project_MDDS-main/pol.json'
     data = json.load(open(filename, 'r'))
 
     # Create Segment Tree
@@ -102,8 +102,12 @@ def main():
     for query in queries:
         print('Query:', query[0], end=' ')
         print('Result:', end=' ')
+        authors = []
         for i in st.query(query[0]):
-            print(i['gap of years'], end=' ')
+            #print(i['gap of years'], end=' ')
+            if i['author\'s name'] not in authors:
+                authors.append(i['author\'s name'])
+                print(i['author\'s name'], end=" ")
         print()
 
     print()
@@ -113,8 +117,12 @@ def main():
     for query in queries:
         print('Query:', query, end=' ')
         print('Result:', end=' ')
+        authors = []
         for i in st.interval_query(*query):
-            print(i['gap of years'], end=' ')
+            #print(i['gap of years'], end=' ')
+            if i['author\'s name'] not in authors:
+                authors.append(i['author\'s name'])
+                print(i['author\'s name'], end=" ")
         print()
 
 if __name__ == '__main__':

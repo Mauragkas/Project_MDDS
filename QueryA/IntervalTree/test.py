@@ -96,8 +96,12 @@ def main():
     for query in queries:
         print("Query:", query[0], end=" ")
         print("Result:", end=" ")
+        authors = []
         for i in interval_tree.query(query[0]):
-            print(i['gap of years'], end=" ")
+            #print(i['gap of years'], end=" ")
+            if i['author\'s name'] not in authors:
+                authors.append(i['author\'s name'])
+                print(i['author\'s name'], end=" ")
         print()
 
     print()
@@ -107,8 +111,12 @@ def main():
     for query in queries:
         print("Query:", query, end=" ")
         print("Result:", end=" ")
+        authors = []
         for i in interval_tree.interval_query(query[0], query[1]):
-            print(i['gap of years'], end=" ")
+            #print(i['gap of years'], end=" ")
+            if i['author\'s name'] not in authors:
+                authors.append(i['author\'s name'])
+                print(i['author\'s name'], end=" ")
         print()
 
 if __name__ == '__main__':
