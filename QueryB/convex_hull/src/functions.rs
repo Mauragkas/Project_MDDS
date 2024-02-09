@@ -34,7 +34,8 @@ pub fn populate_point_vec() -> Vec<Point> {
         points.push(Point::new(
             Some(d.clone()), 
             hash(&d.dblp_record, get_ENV().get_DBLP_RECORDS_LENGTH()) as i32, 
-            d.year_of_release % 30,
+            // d.year_of_release % 30,
+            d.awards,
             hash(&d.surname, get_ENV().get_SURNAMES_LENGTH()) as i32
         ));
     }

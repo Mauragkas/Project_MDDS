@@ -41,7 +41,7 @@ pub struct Data {
     #[serde(rename = "DBLP_Record")]
     pub dblp_record: String,
     #[serde(rename = "Awards")]
-    pub awards: String,
+    pub awards: i32,
     pub kind: String,
     #[serde(rename = "co-author")]
     pub co_author: String,

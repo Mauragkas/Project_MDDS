@@ -63,7 +63,7 @@ impl ConvexHull {
         self.edges.push(edge3.clone());
 
         // create the first plane
-        let plane = Plane::new(points[0].clone(), points[1].clone(), points[2].clone());
+        let plane = Plane::new(points[1].clone(), points[0].clone(), points[2].clone());
 
         // add the plane to the planes vector
         self.add_plane(plane);
@@ -112,7 +112,8 @@ impl ConvexHull {
                 for point in self.points.iter() {
                     // create a plane from the edge and the point
                     if point != &edge.start && point != &edge.end {
-                        let mut plane = Plane::new(edge.start.clone(), edge.end.clone(), point.clone());
+                        // let mut plane = Plane::new(edge.start.clone(), edge.end.clone(), point.clone());
+                        let plane = Plane::new(edge.start.clone(), point.clone(), edge.end.clone());
                         // push the plane to the possible planes vector
                         possible_planes.push(plane);
                     }
@@ -174,94 +175,111 @@ impl ConvexHull {
         self.planes.push(plane2);
         self.planes.push(plane3);
         self.planes.push(plane4);
-
-        // remove the first 4 points from the points vector
-        for point in points.iter() {
-            self.points.remove(self.points.iter().position(|p| *p == *point).unwrap());
-        }
-
-        // create the first 6 edge
-        let edge1 = Edge::new(points[0].clone(), points[1].clone());
-        let edge2 = Edge::new(points[0].clone(), points[2].clone());
-        let edge3 = Edge::new(points[0].clone(), points[3].clone());
-        let edge4 = Edge::new(points[1].clone(), points[2].clone());
-        let edge5 = Edge::new(points[1].clone(), points[3].clone());
-        let edge6 = Edge::new(points[2].clone(), points[3].clone());
-
-        // add the edges to the edges vector
-        self.edges.push(edge1);
-        self.edges.push(edge2);
-        self.edges.push(edge3);
-        self.edges.push(edge4);
-        self.edges.push(edge5);
-        self.edges.push(edge6);
     }
 
-    fn construct_hull(&mut self) {
-        let mut planes_to_add: Vec<Plane> = Vec::new();
-        let mut planes_to_remove: Vec<Plane> = Vec::new();
-        for plane in self.planes.iter() {
-            let mut os: Vec<Point> = Vec::new();
+    pub fn quick_hull(&mut self) {
+        self.init_simplex();
 
+        let mut hull: Vec<Plane> = Vec::new();
+
+        let mut i = 0;
+
+        // self.construct_hull();
+        loop {
+            // let plane = self.planes.pop().unwrap();
+            if self.planes.is_empty() {
+                break;
+            } 
+            println!("Iteration: {}", i);
+            let plane = self.planes.pop().unwrap();
+            let mut os: Vec<Point> = Vec::new();
             for point in self.points.iter() {
                 if point_above_plane(&plane, &point) {
                     os.push(point.clone());
                 }
             }
 
-            if os.is_empty() {
-                // planes_to_add.push(plane.clone());
-                continue;
-            } else {
-                let farthest_point = match farthest_point_from_plane(&plane, &os) {
-                    Some(p) => p,
-                    None => continue,
-                };
-                println!("Adding point: {:?}", farthest_point);
-                let plane1 = Plane::new(plane.point_a.clone(), plane.point_b.clone(), farthest_point.clone());
-                let plane2 = Plane::new(plane.point_b.clone(), plane.point_c.clone(), farthest_point.clone());
-                let plane3 = Plane::new(plane.point_c.clone(), plane.point_a.clone(), farthest_point.clone());
-                planes_to_add.push(plane1);
-                planes_to_add.push(plane2);
-                planes_to_add.push(plane3);
-                planes_to_remove.push(plane.clone());
+            // find the farthest point from the plane
+            let farthest_point = match farthest_point_from_plane(&plane, &os) {
+                Some(p) => p,
+                None => {
+                    // self.add_plane(plane.clone());
+                    // println!("No farthest point found");
+                    hull.push(plane.clone());
+                    continue;
+                }
+            };
+
+            // find the planes that the farthest point is above of
+            let mut planes_under_it: Vec<Plane> = Vec::new();
+            planes_under_it.push(plane.clone());
+            for plane in self.planes.iter() {
+                if point_above_plane(&plane, &farthest_point) {
+                    planes_under_it.push(plane.clone());
+                }
             }
-        }
 
-        if planes_to_add.is_empty() {
-            return;
-        } else {
-            println!("Planes to add: {}", planes_to_add.len());
-        }
+            println!("Planes under it: {}", planes_under_it.len());
 
-        for plane in planes_to_add.iter() {
-            // println!("Plane: ({:?}, {:?}, {:?})", plane.point_a, plane.point_b, plane.point_c);
-            // self.add_plane(plane.clone());
-            if !self.planes.contains(plane) {
-                self.add_plane(plane.clone());
+            // get the planes edges
+            let mut edges: Vec<Edge> = Vec::new();
+            for plane in planes_under_it.iter() {
+                edges.append(&mut plane.get_edges());
             }
-        }
 
-        for plane in planes_to_remove.iter() {
-            self.remove_plane(plane.clone());
-        }
-
-        self.construct_hull();
-    }
-
-    pub fn quick_hull(&mut self) {
-        self.init_simplex();
-
-        self.construct_hull();
-
-        // remove duplicate planes
-        let mut unique_planes: Vec<Plane> = Vec::new();
-        for plane in self.planes.iter() {
-            if !unique_planes.contains(plane) {
-                unique_planes.push(plane.clone());
+            // remove the edges that are shared by two planes
+            let mut unique_edges: Vec<Edge> = Vec::new();
+            for edge in edges.iter() {
+                if !unique_edges.contains(edge) {
+                    unique_edges.push(edge.clone());
+                } else {
+                    unique_edges.remove(unique_edges.iter().position(|e| *e == *edge).unwrap());
+                }
             }
+
+            println!("Unique edges: {}", unique_edges.len());
+
+            // get the points from the edges and create the planes
+            let mut planes_to_add: Vec<Plane> = Vec::new();
+            for edge in unique_edges.iter() {
+                let a = edge.start.clone();
+                let b = edge.end.clone();
+                let c = farthest_point.clone();
+                let plane = Plane::new(a, b, c);
+                // let plane = Plane::new(a, c, b);
+                // let plane = Plane::new(b, a, c);
+                // let plane = Plane::new(b, c, a);
+                // let plane = Plane::new(c, a, b);
+                // let plane = Plane::new(c, b, a);
+                
+                planes_to_add.push(plane);
+            }
+
+            // add the planes to the planes vector
+            for plane in planes_to_add.iter() {
+                // self.add_plane(plane.clone());
+                self.planes.push(plane.clone());
+            }
+
+            // remove the planes under the farthest point
+            for plane in planes_under_it.iter() {
+                // self.remove_plane(plane.clone());
+                if self.planes.contains(plane) {
+                    self.planes.remove(self.planes.iter().position(|p| *p == *plane).unwrap());
+                }
+            }
+
+            i += 1;
+            // // wait for input
+            // let mut input = String::new();
+            // std::io::stdin().read_line(&mut input).unwrap();
+            // if i == 3 {
+            //     break;
+            // }
+            // break;
         }
-        self.planes = unique_planes;
+
+        self.planes = hull;
         
     }
 

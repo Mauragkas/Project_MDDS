@@ -24,16 +24,16 @@ fn main() {
     //     Point::new(None, 0, 0, 0),
     //     Point::new(None, 2, 0, 0),
     //     Point::new(None, 0, 2, 0),
-    //     // Point { x: 0, y: 0, z: 2 },
-    //     // Point { x: 2, y: 2, z: 22 },
-    //     // Point { x: 3, y: 3, z: 3 },
+    //     // Point::new(None, 0, 0, 2),
+    //     // Point::new(None, 2, 2, 2),
+    //     // Point::new(None, 3, 3, 3)
     // ];
 
     // points.extend(populate_point_vec());
 
-    // let mut points: Vec<Point> = populate_point_vec();
+    let mut points: Vec<Point> = populate_point_vec();
 
-    let points: Vec<Point> = create_rng_ponts(10);
+    // let points: Vec<Point> = create_rng_ponts(10);
 
     // points.extend(create_rng_ponts(3));
 
