@@ -190,7 +190,7 @@ impl ConvexHull {
             if self.planes.is_empty() {
                 break;
             } 
-            println!("Iteration: {}", i);
+            // println!("Iteration: {}", i);
             let plane = self.planes.pop().unwrap();
             let mut os: Vec<Point> = Vec::new();
             for point in self.points.iter() {
@@ -205,6 +205,7 @@ impl ConvexHull {
                 None => {
                     // self.add_plane(plane.clone());
                     // println!("No farthest point found");
+                    i += 1;
                     hull.push(plane.clone());
                     continue;
                 }
@@ -219,7 +220,7 @@ impl ConvexHull {
                 }
             }
 
-            println!("Planes under it: {}", planes_under_it.len());
+            // println!("Planes under it: {}", planes_under_it.len());
 
             // get the planes edges
             let mut edges: Vec<Edge> = Vec::new();
@@ -237,7 +238,7 @@ impl ConvexHull {
                 }
             }
 
-            println!("Unique edges: {}", unique_edges.len());
+            // println!("Unique edges: {}", unique_edges.len());
 
             // get the points from the edges and create the planes
             let mut planes_to_add: Vec<Plane> = Vec::new();
@@ -279,6 +280,7 @@ impl ConvexHull {
             // break;
         }
 
+        println!("Iterations: {}", i);
         self.planes = hull;
         
     }

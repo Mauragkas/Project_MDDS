@@ -67,7 +67,7 @@ def plot_planes(data):
 
         ax.quiver(centroid_x, centroid_y, centroid_z, normal['x'], normal['y'], normal['z'], length=0.5, normalize=True)
         # save a the plot at the curent state as a png file in folder saved_images the name should contain the number of the iteration
-        plt.savefig('saved_images/iteration_{}.png'.format(i))
+        # plt.savefig('saved_images/iteration_{}.png'.format(i))
         i += 1
 
     plt.show()

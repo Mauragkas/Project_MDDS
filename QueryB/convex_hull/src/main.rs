@@ -33,7 +33,7 @@ fn main() {
 
     let mut points: Vec<Point> = populate_point_vec();
 
-    // let points: Vec<Point> = create_rng_ponts(10);
+    // let points: Vec<Point> = create_rng_ponts(30);
 
     // points.extend(create_rng_ponts(3));
 
