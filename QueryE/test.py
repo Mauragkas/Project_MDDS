@@ -4,7 +4,7 @@ import numpy as np
 import json
 import random
 
-with open('../.env', 'r') as file:
+with open(r'C:\Users\Sotiris\Desktop\Project_MDDS-main/.env', 'r') as file:
     # Read the environment file line by line
     for line in file:
         # Split the line by '='
@@ -111,7 +111,7 @@ def find_skyline(root):
 
 def main():
     # Path to your JSON file
-    filename = '../pol.json'
+    filename = r'C:\Users\Sotiris\Desktop\Project_MDDS-main/pol.json'
     data= json.load(open(filename, 'r'))
     
     points=[]
@@ -119,14 +119,14 @@ def main():
     i=0
     for record in data:
         # Get year of release of each record
-        if 'year of release' in record:
-            yor = record['year of release']
-            print("Year of release:", yor)
+        if 'Awards' in record:
+            awrd = record['Awards']
+            print("Awards:", awrd)
         # Convert DBLP_Record (str) to a hash
         if 'DBLP_Record' in record:
             DBLP_Record_Hash = hash_function(record['DBLP_Record'])
             print(" DBLP_Record:", record['DBLP_Record'], "  DBLP_Record_Hash:", DBLP_Record_Hash)
-        points.append((DBLP_Record_Hash, yor))
+        points.append((awrd,DBLP_Record_Hash))
         print("Points: ", points[i])
         print()
         i+=1
