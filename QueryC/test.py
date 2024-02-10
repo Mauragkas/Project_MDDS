@@ -4,7 +4,7 @@ import numpy as np
 import json
 
 
-with open('../.env', 'r') as file:
+with open(r'C:\Users\Sotiris\Desktop\Project_MDDS-main/.env', 'r') as file:
     # Read the environment file line by line
     for line in file:
         # Split the line by '='
@@ -31,9 +31,7 @@ def convex_hull(points):
     if n < 3: return  # Convex hull not possible with less than 3 points
 
     # Find the bottom-most point (or choose the left most point in case of tie)
-    l = np.argmin(points[:,1])
-    
-    points = np.roll(points, -l, axis=0)  # Place the bottom-most point at first position
+    points = sorted(points, key=lambda p: (p[1], p[0]))
 
     # Sort the remaining points based on their angle with the first point
     sorted_pts = sorted(points[1:], key=lambda p: np.arctan2(p[1] - points[0][1], p[0] - points[0][0]))
@@ -80,7 +78,7 @@ def skyline(points, dominance_case=1):
 
 def main():
     # Path to your JSON file
-    filename = '../pol.json'
+    filename = r'C:\Users\Sotiris\Desktop\Project_MDDS-main/pol.json'
     data= json.load(open(filename, 'r'))
     
     points=[]
@@ -88,14 +86,14 @@ def main():
     i=0
     for record in data:
         # Get year of release of each record
-        if 'year of release' in record:
-            yor = record['year of release']
-            print("Year of release:", yor)
+        if 'Awards' in record:
+            awrd = record['Awards']
+            print("Awards:", awrd)
         # Convert DBLP_Record (str) to a hash
         if 'DBLP_Record' in record:
             DBLP_Record_Hash = hash_function(record['DBLP_Record'])
             print(" DBLP_Record:", record['DBLP_Record'], "  DBLP_Record_Hash:", DBLP_Record_Hash)
-        points.append((DBLP_Record_Hash, yor))
+        points.append((awrd, DBLP_Record_Hash))
         print("Points: ", points[i])
         print()
         i+=1
