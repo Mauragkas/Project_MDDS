@@ -60,6 +60,7 @@ impl Plane {
         self.normal = cross_product(&vector1, &vector2);
     }
 
+    #[allow(dead_code)]
     pub fn get_points(&self) -> Vec<Point> {
         vec![self.point_a.clone(), self.point_b.clone(), self.point_c.clone()]
     }

@@ -82,7 +82,7 @@ class SegmentTree:
     
 def main():
     # Read data from JSON file
-    filename = r'C:\Users\Sotiris\Desktop\Project_MDDS-main/pol.json'
+    filename = '../../pol.json'
     data = json.load(open(filename, 'r'))
 
     # Create Segment Tree

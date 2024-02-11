@@ -1,20 +1,18 @@
-#![allow(unused)]
+// #![allow(unused)]
 use rand::Rng;
 use rand::distributions::Uniform;
 
 use std::io::Write;
-use std::fs::File;
-use std::path::Path;
 
-use crate::convex_hull::*;
 use crate::point::*;
 use crate::plane::*;
 use crate::hash_stuff::*;
 
 const FILE_LOCATION: &str = "../../pol.json";
 
-pub fn create_rng_ponts(iterations: u32) -> Vec<Point> {
-    let vec: Vec<Point> = (0..iterations)
+#[allow(dead_code)]
+pub fn create_rng_ponts(it: u32) -> Vec<Point> {
+    let vec: Vec<Point> = (0..it)
         .map(|_| Point::new(
             None, 
             rand::thread_rng().sample(Uniform::new(0, 20)),
@@ -69,7 +67,7 @@ pub fn subtract_vectors(a: &Point, b: &Point) -> Point {
     )
 }
 
-pub fn point_to_plane_distance(plane: &Plane, point: &Point) -> f64 {
+fn point_to_plane_distance(plane: &Plane, point: &Point) -> f64 {
     let normal = plane.normal.clone();
     let point_vector = subtract_vectors(&point, &plane.point_a);
     let dot = dot_product(&normal, &point_vector);
@@ -91,6 +89,7 @@ pub fn farthest_point_from_plane(plane: &Plane, points: &[Point]) -> Option<Poin
     // println!("Max distance: {}", max_distance);
     // furthest_point
     match max_distance {
+        #[allow(illegal_floating_point_literal_pattern)]
         0.0 => None,
         _ => Some(furthest_point),
     }
@@ -102,13 +101,6 @@ pub fn point_above_plane(plane: &Plane, point: &Point) -> bool {
     let normal = cross_product(&vector1, &vector2);
     let point_vector = subtract_vectors(&point, &plane.point_a);
     dot_product(&normal, &point_vector) > 0.0
-}
-
-pub fn outside_set(plane: &Plane, points: &[Point]) -> Vec<Point> {
-    points.iter()
-        .filter(|&point| !point_above_plane(&plane, &point))
-        .cloned() // Clone here is fine as we're building a new Vec
-        .collect()
 }
 
 fn are_collinear(a: &Point, b: &Point, c: &Point) -> bool {
@@ -145,18 +137,6 @@ pub fn find_non_collinear_points(points: &Vec<Point>) -> Option<Vec<Point>> {
         }
     }
     None
-}
-
-pub fn angle_between_vectors(normal: &Point, vector: &Point) -> f64 {
-    let dot = dot_product(&normal, &vector);
-    let normal_length = (normal.x.pow(2) + normal.y.pow(2) + normal.z.pow(2)) as f64;
-    let vector_length = (vector.x.pow(2) + vector.y.pow(2) + vector.z.pow(2)) as f64;
-    let magnitude = (normal_length * vector_length).sqrt();
-    let angle = dot / magnitude;
-    if normal != vector {
-        // println!("Angle normal {:?} and vector {:?} is {}", normal, vector, angle.to_degrees());
-    }
-    angle.to_degrees()
 }
 
 pub fn save_to_json<T>(filename: &str, data: &T)

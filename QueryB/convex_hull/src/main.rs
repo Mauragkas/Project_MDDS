@@ -1,9 +1,4 @@
-#![allow(unused)]
-use rand::Rng;
-use rand::distributions::Uniform;
-use gnuplot::{AxesCommon, Caption, Color, Figure};
-use serde::{Deserialize, Serialize};
-use serde_json::json;
+// #![allow(unused)]
 
 mod convex_hull;
 mod functions;
@@ -15,9 +10,6 @@ mod hash_stuff;
 use convex_hull::*;
 use functions::*;
 use point::*;
-use plane::*;
-use edge::*;
-use hash_stuff::*;
 
 fn main() {
     // let mut points: Vec<Point> = vec![
@@ -31,7 +23,7 @@ fn main() {
 
     // points.extend(populate_point_vec());
 
-    let mut points: Vec<Point> = populate_point_vec();
+    let points: Vec<Point> = populate_point_vec();
 
     // let points: Vec<Point> = create_rng_ponts(30);
 
@@ -52,10 +44,6 @@ fn main() {
 
     // save the convex hull to a file
     save_to_json("convex_hull.json", &convex_hull);
-
-    for point in convex_hull.points.iter() {
-        // println!("({:?}, {:?}, {:?})", point.x, point.y, point.z);
-    }
 
     // println!("{:?}", get_ENV());
 }

@@ -1,4 +1,3 @@
-use crate::functions::*;
 use crate::point::Point;
 use serde::{Deserialize, Serialize};
 

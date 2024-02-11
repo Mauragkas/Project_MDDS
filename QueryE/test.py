@@ -4,7 +4,7 @@ import numpy as np
 import json
 import random
 
-with open(r'C:\Users\Sotiris\Desktop\Project_MDDS-main/.env', 'r') as file:
+with open('../.env', 'r') as file:
     # Read the environment file line by line
     for line in file:
         # Split the line by '='
@@ -111,7 +111,7 @@ def find_skyline(root):
 
 def main():
     # Path to your JSON file
-    filename = r'C:\Users\Sotiris\Desktop\Project_MDDS-main/pol.json'
+    filename = '../pol.json'
     data= json.load(open(filename, 'r'))
     
     points=[]
