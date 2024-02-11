@@ -44,7 +44,7 @@ pub struct Data {
     pub awards: i32,
     pub kind: String,
     #[serde(rename = "co-author")]
-    pub co_author: String,
+    pub co_author: Vec<String>,
     pub surname: String,
 }
 

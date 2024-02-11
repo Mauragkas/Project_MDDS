@@ -3,7 +3,7 @@ import json
 import random
 
 # Path to your JSON file
-filename = '../../pol.json'
+filename = '../pol.json'
 
 try:
     # Read JSON data
