@@ -1,11 +1,11 @@
 # Skyline Operator & Convex Hull
 
 ## Overview
-Το παρακάτο υποερωτημα του project αποτελεί την υλοποίηση του αλγορίθμου του 2D Convex Hull και του 2D Skyline Operator σε Python. 
+Το παρακάτο υποερωτημα του project αποτελεί την υλοποίηση του αλγορίθμου του `2D Convex Hull` και του `2D Skyline Operator` σε Python. 
 
-Πιο συγκεκριμένα, ο αλγόριθμος που υλοποιήθηκε είναι ο αλγόριθμος του Graham Scan. Ο αλγόριθμος αυτός είναι ένας αλγόριθμος που χρησιμοποιείται για την εύρεση του Convex Hull ενός συνόλου σημείων στον δυσδιάστατο χώρο (στην περίπτωση μας). 
+Πιο συγκεκριμένα, ο αλγόριθμος που υλοποιήθηκε είναι ο αλγόριθμος του `Graham Scan`. Ο αλγόριθμος αυτός είναι ένας αλγόριθμος που χρησιμοποιείται για την εύρεση του `Convex Hull` ενός συνόλου σημείων στον δυσδιάστατο χώρο (στην περίπτωση μας). 
 
-Ο αλγόριθμος Skyline Operator 2D επιστρέφει το σύνολο των σημείων που αποτελούν το Skyline, δηλαδή τα σημεία που δεν μπορούν να κυριαρχηθούν από άλλα σημεία σε κάποιον άλλο κριτήριο. Στην περίπτωση μας κάθε σημείο στο Skyline είναι σημείο που δεν υπάρχει άλλο σημείο που να έχει `1o Subset` μικρότερες τιμές για d1 και d2 , `2o Subset` μια μικρότερη τιμή d1 και μια μεγαλύτερη τιμή d2, `3o Subset` μια μεγαλύτερη τιμή d1 και μια μικρότερη τιμή d2, `4o Subset` μεγαλύτερες τιμές σε όλες τις διαστάσεις.
+Ο αλγόριθμος `Skyline Operator` 2D επιστρέφει το σύνολο των σημείων που αποτελούν το Skyline, δηλαδή τα σημεία που δεν μπορούν να κυριαρχηθούν από άλλα σημεία σε κάποιο άλλο κριτήριο. Στην περίπτωση μας υπολογίζουμε τα 4 υποσύνολα: `1o Subset` μικρότερες τιμές για d1 και d2, `2o Subset` μια μικρότερη τιμή d1 και μια μεγαλύτερη τιμή d2, `3o Subset` μια μεγαλύτερη τιμή d1 και μια μικρότερη τιμή d2, `4o Subset` μεγαλύτερες τιμές σε όλες τις διαστάσεις.
 
 ## Table of Contents
 - [Skyline Operator & Convex hull](#skyline-operator--convex-hull)
@@ -59,7 +59,7 @@ import numpy as np
 import json
 
 
-with open(r'C:\Users\Admin\Desktop\Project_MDDS-main\Project_MDDS-main/.env', 'r') as file:
+with open('../.env', 'r') as file:
     # Read the environment file line by line
     for line in file:
         # Split the line by '='
@@ -133,7 +133,7 @@ def skyline(points, dominance_case=1):
 
 def main():
     # Path to your JSON file
-    filename = r'C:\Users\Admin\Desktop\Project_MDDS-main\Project_MDDS-main/pol.json'
+    filename = '../pol.json'
     data= json.load(open(filename, 'r'))
     
     points=[]
@@ -185,5 +185,4 @@ if __name__ == '__main__':
     except Exception as e:
         print(e)
         pass
-
 ```
