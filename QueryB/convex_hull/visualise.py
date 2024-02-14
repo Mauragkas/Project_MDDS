@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import os
 import json
 import matplotlib.pyplot as plt
 import sys
@@ -23,14 +22,15 @@ def plot_points(data):
 def plot_edges(data):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    for edge in data['edges']:
-        # Access the coordinates directly from start and end
-        p1, p2 = edge['start'], edge['end']
-        x_values = [p1['x'], p2['x']]
-        y_values = [p1['y'], p2['y']]
-        z_values = [p1['z'], p2['z']]
-        # Plot the edge
-        ax.plot(x_values, y_values, z_values, 'k-')
+    for plane in data['planes']:
+        edges = [plane['edge_a'], plane['edge_b'], plane['edge_c']]
+        for edge in edges:
+            p1, p2 = edge['start'], edge['end']
+            x_values = [p1['x'], p2['x']]
+            y_values = [p1['y'], p2['y']]
+            z_values = [p1['z'], p2['z']]
+            # Plot the edge
+            ax.plot(x_values, y_values, z_values, 'k-')
     plt.show()
 
 
@@ -44,7 +44,6 @@ def plot_planes(data):
     zs = [point['z'] for point in data['points']]  # z coordinates
     ax.scatter(xs, ys, zs)
 
-    i = 0
     for plane in data['planes']:
         # Extract the coordinates for each point
         xa, ya, za = plane['point_a']['x'], plane['point_a']['y'], plane['point_a']['z']
@@ -66,10 +65,6 @@ def plot_planes(data):
         normal = plane['normal']
 
         ax.quiver(centroid_x, centroid_y, centroid_z, normal['x'], normal['y'], normal['z'], length=0.5, normalize=True)
-        # save a the plot at the curent state as a png file in folder saved_images the name should contain the number of the iteration
-        # plt.savefig('saved_images/iteration_{}.png'.format(i))
-        i += 1
-
     plt.show()
 
 def main():
@@ -79,9 +74,6 @@ def main():
 
     mode = sys.argv[1]
     data = get_the_data_from_file('convex_hull.json')
-
-    #remove the saved_images folder files
-    os.system('rm -r saved_images/*')
 
     if mode == 'points':
         plot_points(data)

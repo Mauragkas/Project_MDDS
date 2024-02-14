@@ -100,8 +100,8 @@ def main():
     # Stabbing querying
     print('Stabbing querying:')
     for query in queries:
-        print('Query:', query[0], end=' ')
-        print('Result:', end=' ')
+        print('\033[91mQuery:', query[0], end=' ')
+        print('Result:\033[0m', end=' ')
         authors = []
         for i in st.query(query[0]):
             #print(i['gap of years'], end=' ')
@@ -115,8 +115,8 @@ def main():
     # Interval querying
     print('Interval querying:')
     for query in queries:
-        print('Query:', query, end=' ')
-        print('Result:', end=' ')
+        print('\033[91mQuery:', query, end=' ')
+        print('Result:\033[0m', end=' ')
         authors = []
         for i in st.interval_query(*query):
             #print(i['gap of years'], end=' ')

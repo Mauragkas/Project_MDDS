@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
-import numpy as np
 import json
-import random
 
 with open('../.env', 'r') as file:
     # Read the environment file line by line
@@ -141,7 +139,7 @@ def main():
     print("Skyline:", skyline)
 
     # Plot the points and the skyline
-    fig, ax = plt.subplots()
+    _, ax = plt.subplots()
     ax.scatter([p[0] for p in points], [p[1] for p in points], label='All Points')
     ax.scatter([p[0] for p in skyline], [p[1] for p in skyline], label='Skyline Points', color='red')
     ax.set_xlabel('X')
