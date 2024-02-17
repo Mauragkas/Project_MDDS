@@ -15,9 +15,9 @@ pub fn create_rng_ponts(it: u32) -> Vec<Point> {
     let vec: Vec<Point> = (0..it)
         .map(|_| Point::new(
             None, 
-            rand::thread_rng().sample(Uniform::new(0, 20)),
-            rand::thread_rng().sample(Uniform::new(0, 20)),
-            rand::thread_rng().sample(Uniform::new(0, 20)),
+            rand::thread_rng().sample(Uniform::new(0, 200)),
+            rand::thread_rng().sample(Uniform::new(0, 200)),
+            rand::thread_rng().sample(Uniform::new(0, 200)),
         ))
         .collect();
     vec
@@ -32,7 +32,6 @@ pub fn populate_point_vec() -> Vec<Point> {
         points.push(Point::new(
             Some(d.clone()), 
             hash(&d.surname, get_ENV().get_SURNAMES_LENGTH()) as i32,
-            // d.year_of_release % 30,
             d.awards,
             hash(&d.dblp_record, get_ENV().get_DBLP_RECORDS_LENGTH()) as i32, 
         ));
@@ -49,7 +48,6 @@ pub fn cross_product(a: &Point, b: &Point) -> Point {
     )
 }
 
-// pub fn dot_product(a: Point, b: Point) -> f64 {
 pub fn dot_product(a: &Point, b: &Point) -> f64 {
     (a.x * b.x + a.y * b.y + a.z * b.z) as f64
 }
@@ -86,8 +84,6 @@ pub fn farthest_point_from_plane(plane: &Plane, points: &[Point]) -> Option<Poin
             furthest_point = point.clone();
         }
     }
-    // println!("Max distance: {}", max_distance);
-    // furthest_point
     match max_distance {
         #[allow(illegal_floating_point_literal_pattern)]
         0.0 => None,
